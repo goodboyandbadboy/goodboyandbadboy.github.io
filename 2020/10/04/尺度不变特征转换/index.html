@@ -1,0 +1,1142 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      尺度不变特征转换 | Ryan
+    
+  </title>
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">Fetching...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">Catalog</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「尺度不变特征转换」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">Home</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">Archive</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">Category</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">Tag</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">About</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">Gallery</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-zhihu"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-sina-weibo "></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-pinterest2"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-instagram"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-twitter"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="Catalog"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2020/10/04/%E5%B0%BA%E5%BA%A6%E4%B8%8D%E5%8F%98%E7%89%B9%E5%BE%81%E8%BD%AC%E6%8D%A2/" itemprop="url">
+		尺度不变特征转换
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	Updated on
+
+	<a href="/2020/10/04/%E5%B0%BA%E5%BA%A6%E4%B8%8D%E5%8F%98%E7%89%B9%E5%BE%81%E8%BD%AC%E6%8D%A2/" itemprop="url">
+		<time datetime="2020-10-04T06:37:29.000Z" itemprop="dateUpdated">
+	  		2020-10-04
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+						
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<h1 id="尺度不变特征转换"><a href="#尺度不变特征转换" class="headerlink" title="尺度不变特征转换"></a>尺度不变特征转换</h1><h2 id="一、-SIFT简介"><a href="#一、-SIFT简介" class="headerlink" title="一、 SIFT简介"></a>一、 SIFT简介</h2><p>​        SIFT是用于图像处理领域的一种描述。这种描述具有不变性，可在图像中检测出关键点，是一种局部特征描述子。本文参考==David Lowe== 老兄2004年发表的论文——==Distinctive Image Features from Scale-Invariant Keypoints==进行详细的叙述，阐述过程中使用python对关键步骤进行代码实现。</p>
+<h2 id="二、摘要"><a href="#二、摘要" class="headerlink" title="二、摘要"></a>二、摘要</h2><img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.23-SIFT摘要.png" style="zoom: 350%;" />
+
+<hr>
+<p>​        首先介绍David G. Lowe老兄论文的摘要部分，对整篇论文的核心思想进行概括了解，摘要是对论文内容的绝对浓缩，论文每个部分我都将对其内容做一个简单的思维导图，以此来方便大家对该部分内容整体框架的理解。</p>
+<p>​        上面已经提到过2004年的这篇论文是非常经典的一篇论文，尤其是在图像识别领域，即使是在以深度学习为主流研究方向的现在，SIFT算法仍然具有其优势，在一些相关领域仍然被广泛使用，研究人员对SIFT算法的改进依旧如火如荼，截止目前为止，==Distinctive Image Features from Scale-Invariant Keypoints==已经被引用==26,427==次，如此多的引用率足以表明该篇论文的重要程度。</p>
+<h3 id="1-内容"><a href="#1-内容" class="headerlink" title="1.内容"></a>1.内容</h3><p>​        论文提出一种能够从图片中提取==不变性(invariant)==特征的方法——SIFT，该方法能够对于不同视角下的物体或场景实现可靠匹配，算法提取到的特征对图像的尺度和旋转具有不变性，即我们平常所说的==尺度不变性、旋转不变性==。当对图像进行仿射畸变差(affine distortion)、改变三维视角(change in 3D viewpoint)、额外增加噪声(addition of noise)、改变光照强度(change in illumination)等变化，我们提取到的特征都表现出了很好的==鲁棒性(robust)==。</p>
+<p>​        为了充分展示该算法的优越性，论文也讲述了一种利用提取到的特征进行物体识别的方法，通过识别的结果来说明该算法的优越性。对个体特征和通过已知目标特征组成的数据库对比，使用==邻近算法(nearest-neighbor)==进行特征匹配，然后根据==霍夫变换(Hough Transform )==识别属于单一目标的聚类，最后通过==最小二乘法(least-squares)==对参数进行确认。</p>
+<h3 id="2-结论"><a href="#2-结论" class="headerlink" title="2.结论"></a>2.结论</h3><p>​        在实时识别的过程中，无论识别物体是杂乱还是被遮挡，该方法都能识别出来，鲁棒性很好。</p>
+<p>​        This approach to recognition can ==robustly== identify objects among==clutter== and ==occlusion== while achieving near real-time performance</p>
+<h2 id="三、-引言"><a href="#三、-引言" class="headerlink" title="三、 引言"></a>三、 引言</h2><img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.23-SIFT-引言-1600933051010.png" style="zoom:200%;" />
+
+<h3 id="1-研究背景"><a href="#1-研究背景" class="headerlink" title="1.研究背景"></a>1.研究背景</h3><p>​        本文的算法主要解决的就是图像处理所面临的诸多问题，因此研究背景就不言而喻，图像匹配是计算机视觉领域诸多问题中的一个基础性方面，例如，物体或场景识(==object or scence recognition==)、解决多图片3D构建问题(==solve for 3D structure from mutiple images==)、立体匹配(==stereo correspondence==)、运动跟踪(==motion tracking==)等。</p>
+<h3 id="2-算法效果"><a href="#2-算法效果" class="headerlink" title="2.算法效果"></a>2.算法效果</h3><p>​        无论在空间域还是在频域上都能很好的定位出特征，其次能够降低因噪声、遮挡、图片内容混乱造成提取错乱的概率，同时该算法能够提取到大量的特征，并且这些特征都高度独立。</p>
+<h3 id="3-研究问题"><a href="#3-研究问题" class="headerlink" title="3.研究问题"></a>3.研究问题</h3><h4 id="1-主要计算步骤"><a href="#1-主要计算步骤" class="headerlink" title="==1)主要计算步骤=="></a>==1)主要计算步骤==</h4><p>​            这一部分是概要是整篇文章的核心，论文后边都将根据这一部分陈述的内容进行详细的描述，并且整个代码的实现过程要是根据这部分的理论内容进行编写，引言部分主要是简单的概述一下，详细内容将会在后边展开。</p>
+<p>​            ==①Scale-space extrema detection–尺度空间极值检测 :==</p>
+<p>​            应用==高斯差分金字塔(difference-of-Gaussian function)==识别出具有尺度和方向不变性的潜在感兴趣点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use a difference-of-Gaussian function to indentify potential interest points that invariant to scale and orientation</span><br></pre></td></tr></table></figure>
+
+<p>​            ==②Keypoint localization–关键点定位：==</p>
+<p>​            在每个候选的位置上，通过一个拟合精细的模型来确定位置和尺度，关键点的选择依据于它们的稳定性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">At each candidate location, a detailed model is fit to determine location and scale. Keypoints are selected based on measures of their stability</span><br></pre></td></tr></table></figure>
+
+<p>​            ==③Orientation assignment–方位定向：==</p>
+<p>​            基于图像局部的梯度方向，分配给每个关键点位置一个或多个方向。所有后面的对图像数据的操作都相对于关键点的方向、尺度和位置进行变换，从而提供对于这些变换的不变性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">One or more orientations are assigned to each keypoint location based on local image gradient directions.All future operations are performed on image data that has been transformed relative to the assigned orientation, scale, and location for each feature, thereby providing invariance to these transformations.</span><br></pre></td></tr></table></figure>
+
+<p>​            ==④Keypoint descriptor–关键点描述符：==</p>
+<p>​            在每个关键点周围的邻域内，在选定的尺度上测量图像局部的梯度，这些梯度被变换成为一种表示，这种表示允许比较大的局部形状的变形和光照变化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The local image gradients are measured at the selected scale in the region around each keypoint. These are transformed into a representation that allows for significant levels of local shape distortion and change in illumination</span><br></pre></td></tr></table></figure>
+
+<h4 id="2）SIFT优势："><a href="#2）SIFT优势：" class="headerlink" title="2）SIFT优势："></a>2）SIFT优势：</h4><p>​            获取大量的图片特征信息对于物体识别来说是至关重要的，SIFT能够生成大量的特征，它们密集的覆盖了整个图像的尺度和位置，例如，对于一个500*500像素的图片将能够产生大约2000个稳定的特征。</p>
+<h4 id="3）特征匹配："><a href="#3）特征匹配：" class="headerlink" title="3）特征匹配："></a>3）特征匹配：</h4><p>​            特征匹配并不是该篇论文所阐述的重点，主要是为了检验SIFT的效率，特征匹配阶段主要使用欧氏距离和临近算法。</p>
+<hr>
+<h2 id="四、相关研究"><a href="#四、相关研究" class="headerlink" title="四、相关研究"></a>四、相关研究</h2><img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.24-SIFT相关研究.png" style="zoom:200%;" />
+
+<hr>
+<p>​        论文这一部分主要介绍的是一些相关领域的研究，主要是在图像匹配领域一些研究，主要集中在2004年之前，大部分是在2000年前后，可以看的出来，发明一个适应相关领域应用的优秀算法是需要经过大量的研究工作，这一部分笔者就不详细介绍了，思维导图中简单的写了一部分，1999年Lowe提出的方法就是目前的我们正在详细讲解论文的前身，也是在此基础上进行的整理和加深。Lowe在论文中写道：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This current paper provides a more in-depth development and analysis of this earlier work, while also presenting a number of improvements in stability and feature invariance.</span><br></pre></td></tr></table></figure>
+
+<p>​        如果你们想了解的话可以根据参考文献找到相应的论文进行阅读，因为本人水平也有限，就不对文中提到的相应研究做详细的叙述了。</p>
+<h2 id="五、空间极值检测"><a href="#五、空间极值检测" class="headerlink" title="五、空间极值检测"></a>五、空间极值检测</h2><p>在开始叙述这部分之前，我想先简单的讲解一下梯度、什么是图像梯度以及尺度空间理论，这样可以便于我们进行理解。</p>
+<h3 id="1-梯度简介"><a href="#1-梯度简介" class="headerlink" title="1.梯度简介"></a>1.梯度简介</h3><p>梯度不是一个实数，是一个向量，是有方向、有大小的。梯度的方向是函数变化最快的方向，沿着梯度的方向容易找到最大值。例：二元函数$f(x,y)$,在某点有梯度：<br>$$<br>gradf(x,y) = \nabla f(x,y) = \left{\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}   \right }=f_x(x,y) \overline{i} + f_y(x,y) \overline {j}<br>$$</p>
+<h3 id="2-图像梯度简介"><a href="#2-图像梯度简介" class="headerlink" title="2.图像梯度简介"></a>2.图像梯度简介</h3><p>​        在一幅模糊图像中的物体的轮廓不明显，轮廓边缘灰度变化不强烈，从而导致层次感不强，而在清晰图片中的物体轮廓边缘灰度变化明显，层次感强。那么灰度变化明显还是不明显怎么定义呢？我们可以使用导数（梯度）来衡量图像灰度的变化率，因为图像就是函数，引入的图像梯度可以把图像看作为二维离散函数，图像梯度其实就是这个二维离散函数的求导。对于数字图像来说，相当于是二维离散函数求梯度，使用差分来近似导数：<br>$$<br>G_x(x,y)= H(x+1,y)-H(x-1,y) \<br>G_y(x,y)=H(x,y+1)-H(x,y-1)<br>$$<br>因此像素点$(x,y)$处的梯度值和梯度方向分别是：<br>$$<br>G(x,y)=\sqrt{G_x(x,y)^2+G_y(x,y)^2}\<br>\alpha(x,y) = \tan^{-1}(\frac{G_y(x,y)}{G_x(x,y)})<br>$$<br>​        梯度的方向是函数变化最快的方向，所以当函数中存在边缘时，一定有较大的梯度值。当图像中有比较平滑的部分时，灰度值变化较小，则相应的梯度也较小，由图像梯度构成的图像称为梯度图像。一些经典的图像梯度算法是考虑图像的每个像素的某邻域内的灰度变化，利用边缘临近的一阶或二阶导数变化规律，对原始图像中像素某个邻域设置梯度算子，通常用小区域模板进行卷积来计算。</p>
+<h3 id="3-Nabla算子"><a href="#3-Nabla算子" class="headerlink" title="3.Nabla算子"></a>3.Nabla算子</h3><p>​        Del算子或称Nabla算子，在中文中也叫向量微分算子、倒三角算子，符号为$\nabla$,是一个向量微分算子，但本身并非一个向量。其形式化定义为：<br>$$<br>\nabla = \frac{d}{dr}<br>$$<br> 在N维空间中，分母$dr$ 为含n个分量的向量，因而$\nabla$ 本身就是 个n维向量算子，三维情况下:</p>
+<p>$$<br>\nabla = \frac{\partial}{\partial x}i+ \frac{\partial}{\partial y}j+ \frac{\partial}{\partial z}k<br>$$</p>
+<h3 id="4-高斯滤波"><a href="#4-高斯滤波" class="headerlink" title="4.高斯滤波"></a>4.高斯滤波</h3><p>​        SIFT算法是在不同尺度空间上查找关键点，而尺度空间的获取需要使用高斯模糊来实现，Lindeberg等人已经证明高斯卷积核是实现尺度变换的唯一变换核，并且是唯一的线性核。        </p>
+<p>​        高斯滤波就是对整幅图像进行加权平均的过程，每一个像素点的值，都由其本身和邻域内的其他像素值经过加权平均后得到。高斯滤波的作用就是平滑原图像，使图像变得模糊。使用的函数就是我们常见的高斯函数，服从正态分布的图像，只不过我们现在使用的函数是二维空间的。</p>
+<p><img src="D:%5CMyblog%5Csource_posts%5C%E5%B0%BA%E5%BA%A6%E4%B8%8D%E5%8F%98%E7%89%B9%E5%BE%81%E8%BD%AC%E6%8D%A2.assets%5C2020.09.28-%E9%AB%98%E6%96%AF%E5%9B%BE%E5%83%8F.png" alt=""></p>
+<p>​        高斯滤波的重要两步就是：找到高斯核，进行卷积。高斯函数公式中，$\sigma$是正态分布的标准差，$\sigma$值越大，图像越模糊。</p>
+<p>​        首先是滤波核构建：</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.28-高斯滤波核构建.png" style="zoom:60%;" />
+
+<p>​        上图展示的就是一个三阶的滤波核，左边的图代表的是坐标，我们所带入的公式就是高斯公式，最后通过计算得到的结果就是右图所示。当高斯滤波核构建完成后，我们直接进行卷积就可以了，卷积过程就是我们通常意义的卷积，和现在神经网络使用的卷积一样，我就不详细介绍了。高斯滤波其实将会一直存在与我们下边构建高斯金字塔的过程。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GuassianKernel</span><span class="params">(sigma,dim)</span>:</span>  <span class="comment">#产生高斯核</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    :param sigma: 标准差</span></span><br><span class="line"><span class="string">    :param dim: 高斯核的维度（必须是个奇数）</span></span><br><span class="line"><span class="string">    :return: 返回高斯核</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    temp = [t - (di m // <span class="number">2</span>) <span class="keyword">for</span> t <span class="keyword">in</span> range(dim)]  <span class="comment"># 生成二维高斯的x与y  列表中使用for循环</span></span><br><span class="line">    assistant = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(dim):</span><br><span class="line">        assistant.append(temp)   <span class="comment">#生成三维数组-1 0 1</span></span><br><span class="line">    assistant = np.array(assistant)</span><br><span class="line">    temp = <span class="number">2</span> * sigma * sigma</span><br><span class="line">    result = (<span class="number">1.0</span> / (temp * np.pi)) * np.exp(-(assistant ** <span class="number">2</span> + (assistant.T) ** <span class="number">2</span>) / temp)  <span class="comment"># 二维高斯公式 assitant.T表示转置</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<p>​        理论上来讲，图像中每点的分布都不为零，这也就是说每个像素的计算都需要包含整幅图像。在实际应用中，在计算高斯函数的离散近似时，在大概3$\sigma$距离之外的像素都可以看作不起作用，这些像素的计算也就可以忽略。通常，图像处理程序只需要计算$(6\sigma+1)\times(6\sigma+1)$的矩阵就可以保证相关像素的影响。</p>
+<p>​        因此上述的dim值就是$(6\sigma+1)$,随着$\sigma$的变化而变化。</p>
+<hr>
+<h3 id="5-尺度空间理论"><a href="#5-尺度空间理论" class="headerlink" title="5. 尺度空间理论"></a>5. 尺度空间理论</h3><p>​        尺度空间(scale space)思想最早是由lijima于1962年提出的，后来经witkin和Koenderink等人的推广逐渐得到关注，在计算机视觉领域使用广泛。</p>
+<p>​        尺度空间理论的基本思想是：在图像信息处理模型中引入一个被视为尺度的参数，通过连续变化尺度参数获得多尺度下的尺度空间表示序列，对这些序列进行尺度空间主轮廓的提取，并以该主轮廓作为一种特征向量，实现边缘、角点检测和不同分辨率上的特征提取等。</p>
+<p>​        尺度空间方法将传统的单尺度图像信息处理技术纳入尺度不断变化的动态分析框架中，更容易获取图像的本质特征。尺度空间中各尺度图像的模糊程度逐渐变大，能够模拟人在距离目标由近到远时目标在视网膜上的形成过程。</p>
+<p>​        尺度空间满足视觉不变性。该不变性的视觉解释如下：当我们用眼睛观察物体时，一方面当物体所处背景的光照条件变化时，视网膜感知图像的亮度水平和对比度是不同的，因此要求尺度空间算子对图像的分析不受图像的灰度水平和对比度变化的影响，即满足灰度不变性和对比度不变性。另一方面，相对于某一固定坐标系，当观察者和物体之间的相对位置变化时，视网膜所感知的图像的位置、大小、角度和形状是不同的，因此要求尺度空间算子对图像的分析和图像的位置、大小、角度以及仿射变换无关，即满足平移不变性、尺度不变性、欧几里得不变性以及仿射不变性。</p>
+<hr>
+<h3 id="6-高斯金字塔"><a href="#6-高斯金字塔" class="headerlink" title="6.高斯金字塔"></a>6.高斯金字塔</h3><p>​        那么到底该怎么构建高斯金字塔和高斯差分金字塔呢？其实主要工作是构建高斯金字塔，因为高斯差分金字塔就是在高斯金字塔的基础上相邻层相减得到的。在介绍高斯金字塔之前，我先简单说一下什么是图像金字塔。</p>
+<p><img src="D:%5CMyblog%5Csource_posts%5C%E5%B0%BA%E5%BA%A6%E4%B8%8D%E5%8F%98%E7%89%B9%E5%BE%81%E8%BD%AC%E6%8D%A2.assets%5C2020.09.29-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94.jpg" alt=""></p>
+<p>​        上图就是一个图像金字塔，图像金字塔是图像中多尺度表达的一种，最主要用于图像的分割，是一种以多分辨率来解释图像的有效但概念简单的结构。图像金字塔最初用于机器视觉和图像压缩，一幅图像的金字塔是一系列以金字塔形状排列的、分辨率逐步降低的、来源于同一张原始图的图像集合。层级越高，则图像分辨率越小，分辨率越低。</p>
+<p>​        尺度空间在实现时使用高斯金字塔表示，高斯金字塔不是一个金字塔，而是很多组(Octave)金字塔，而每组金字塔包括若干层，如下图所示。</p>
+<p><img  src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.27-高斯金子塔.png"> style=”zoom: 50%;” &gt;</p>
+<p>​        那么对于高斯金字塔每个octave里面的部分又是怎样工作的呢?下面来说一下。</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.04-金字塔内部-1601781847458.png" style="zoom: 67%;" />
+
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.28-改版金字塔k值.png" style="zoom: 50%;" />
+
+<p>​        其中高斯金字塔每个组(octava)有s+3幅图像，因为s是意味着在高斯差分金字塔中求极值点时，我们要在每个octave中求s层点，而每一层的极值点都是在三维空间中比较获得，至于怎么比较的，后边会介绍，因此为了获得s层点，那么高斯差分金字塔就需要s+2幅图像，高斯金字塔就需要s+3幅图像。</p>
+<p>​        通过上面两幅图片，(o,s)构成高斯金字塔的尺度空间，o控制塔中的尺寸这个尺度，s控制一个octave中不同的模糊程度。其中(o,s)作用与一幅图像通过公式确定<br>$$<br>\sigma = \sigma_02^{0+\frac{s}{S}} \tag{7}<br>$$<br>其中$k=2^\frac{1}{S}$，由公式(7)推出<br>$$<br>\sigma = \sigma_02^{o}k^s \tag{8}<br>$$<br>所以第一个octave中的尺度序列为：<br>$$<br>\sigma ,k\sigma ,k^2\sigma ….. \<br>$$<br>其中$o \in [0,…,O-1], s \in[0,…,S+2] $, $\sigma_0$是基准尺度</p>
+<p>简单写一下推导过程：</p>
+<p>当o=0,s=0,则$\sigma= \sigma_0$</p>
+<p>当o=0,s=1,则$k\sigma=\sigma_0k$ </p>
+<p>  …….</p>
+<p>因此，第二个octave中的尺度序列为：<br>$$<br>2\sigma ,2k\sigma,2k^2\sigma …..<br>$$<br>​        对于高斯金字塔的初始尺度做一下简单的说明,当图像通过相机拍摄时，相机的镜头已经对图像进行了一次初始的模糊，所以根据高斯模糊的性质有：<br>$$<br>\sigma_0 = \sqrt {\sigma_{init}<em>\sigma_{init}-\sigma_{pre}</em>\sigma_{pre}}<br>$$<br>其中$\sigma_{init}$第0层的尺度,$\sigma_{pre}$是被相机镜头模糊后的尺度。</p>
+<p>​        这也就是为什么上图中的$\sigma _0$=1.52的原因，就是考虑到相机已经对图像进行$\sigma$=0.5的模糊，当然Lowe老兄建议是$\sigma _0$为1.6，至于为什么是1.6，其实是他通过实验得出的结论，下文也会对该参数进行介绍，因此最终我们实际得到的$\sigma_0$是1.52。</p>
+<p>​        为了尽可能多的保留原始图像信息，一般需要对原始图像进行扩大两倍采样，即升采样，从而生成一组采样图：octave$<em>{-1}$,此组采样图的第一层的模糊参数为：<br>$$<br>\sigma</em>{-1}=\sqrt{1.6<em>1.6-(2*0.5)</em>(2*0.5)}=1.25<br>$$<br>但是升采样不是必须的，完全可以直接用原图来构建高斯金字塔，正如上边图片所示的高斯金字塔那样进行操作。</p>
+<p>​        我简单说一下什么是升采样：升采样其实是一种插值，就是在一幅图像中利用相关插值运算得到一幅大的图像，如果是比例因子为2的升采样，就是对每个相邻像素点插值出一个像素，于是n*n的图像变成2n X 2n 的图像。</p>
+<p>​        刚才这一部分的说明，论文是在构建完高斯差分金字塔，完成局部极值点检测后阐述的，我在这复述一下原文的解释。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">To make full use of the input, the image can be expanded to create more sample points than were present in the original.</span><br><span class="line">We double the size of the imput image using liner interpolation prior to building the first level of the pyramid.</span><br><span class="line">while the equivalent operation could effectively have been performed by using sets of subpixel-offset filters on the original imgae,the image doubling leads to a more efficient implementation.</span><br><span class="line">We assume that the original image has a blur of at least σ=0.5, and that therefore the doubled image has σ=1.0</span><br></pre></td></tr></table></figure>
+
+<p>上边介绍了一下高斯金字塔内部的一些信息，而构建高斯差分金字塔所需要的公式如下：<br>$$<br>L(x,y, \sigma) = G(x,y,\sigma)* I(x,y) \tag{1}<br>$$</p>
+<p>$$<br>G(x,y,\sigma) = \frac{1}{2 \pi \sigma^2} e^{-(x^2+y^2)/2 \sigma ^2}\tag{2}<br>$$</p>
+<p>$$<br>D(x,y,\sigma) = (G(x,y, k\sigma)-G(x,y,\sigma))*I(x,y)\<br>= L(x,y,k\sigma) - L(x,y,\sigma) \tag{3}<br>$$</p>
+<p>上述公式中$L(x,y,\sigma)$函数表示的是一个图像的尺度空间(the scale space of an image)，$I(x,y)$ 表示一张输入的图片(an input image)，$G(x,y,\sigma)$代表尺度变化的高斯函数(a variable-scale Gaussian)，$D(x,y,\sigma)$  表示高斯差分尺度空间。上边的这三个公式其实就是我们这一块构建高斯差分金字塔所使用的公式，很重要的，我会在下边进行一些阐述，并进行相关的推导来便于理解。</p>
+<p>​        尺度空间使用高斯金字塔表示，Tony Lindeberg指出尺度规范化的LoG(Laplacion of Gaussian)算子具有真正的尺度不变性，Lowe使用的高斯差分金字塔近似LoG算子，用来在尺度空间检测稳定的关键点。</p>
+<p>​        1994年Lindeberg研究发现高斯差分函数(difference-of-Gaussian function)和尺度归一化的拉普拉斯高斯函数(scale-normalized Laplacian of Gaussian)——$\sigma^2\nabla^2G$非常相似，2002年Mikolajczyk发现，相比于其他的函数，如梯度(the gradient)、黑塞矩阵(Hessian)、Harris corner function等，尺度归一化的拉普拉斯高斯函数$\sigma^2\nabla^2G$的极大值和极小值能够产生最稳定的图像特征(the most stable image features)。</p>
+<p>​        对于为什么能用高斯差分金字塔来近似LoG算子，以及$D$和$\sigma^2\nabla^2G$之间的关系，论文中给出了简单的介绍。<br>$$<br>\frac {\partial G}{\partial \sigma} = \sigma \nabla^2G \tag{4}<br>$$<br>对于为什么能够给出公式(4)的关系，我来给推一下，首先是左边，G是高斯函数，其公式形式我们已经知道，见公式(3)，上边介绍高斯滤波的时候也介绍过。对高斯函数求$\sigma$偏导：<br>$$<br>\frac{\partial G}{\partial \sigma}=\frac{-2\sigma^2+x^2+y^2}{2\pi\sigma^5}e^{-(x^2+y^2)/2\sigma^2}<br>$$<br>然后我们计算一下LoG算子，其中关于$\nabla$算子，前面已经介绍了。<br>$$<br>\nabla^2G=\frac{\partial^2G}{\partial x^2}+ \frac{\partial^2G}{\partial y^2}=\frac{-2\sigma^2+x^2+y^2}{2\pi\sigma^6}e^{-(x^2+y^2)/2\sigma^2}<br>$$<br>所以我们能够得到：<br>$$<br>\sigma \nabla^2G= \frac{\partial G}{\partial \sigma}<br>$$<br>由导数定义:<br>$$<br>\frac{\partial G}{\partial \sigma}=\lim_{\vartriangle\sigma \rightarrow0}\frac{G(x,y,\sigma+\vartriangle\sigma)-G(x,y,\sigma)}{(\sigma+\vartriangle\sigma)-\sigma}\approx \frac{G(x,y,k\sigma)-G(x,y,\sigma)}{k\sigma-\sigma}<br>$$</p>
+<p>因此得到结果，即利用差分来近似微分：<br>$$<br>\sigma \nabla^2G= \frac{\partial G}{\partial \sigma}≈ \frac{G(x,y,k\sigma)-G(x,y,\sigma)}{k\sigma-\sigma} \tag{5}<br>$$<br>得到：<br>$$<br>G(x,y,k\sigma)-G(x,y,\sigma) ≈ (k-1)\sigma^2\nabla^2G \tag{6}<br>$$<br>因此上述式子就解释了为什么能够用高斯差分函数来近似拉普拉斯高斯函数，当k=2时，就已经是拉普拉斯高斯函数了，公式中(k-1)是一个常量，因此并不影响极值点的位置。如下图所示：</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.27-高斯差分与拉普拉斯高斯区别.png" style="zoom:60%;" />
+
+<p>红色曲线表示的是高斯差分算子，而蓝色曲线表示的是高斯拉普拉斯算子，Lowe使用更高效的高斯差分算子代替拉普拉斯算子进行极值检测，如公式3所示。</p>
+<p>高斯差分金字塔的构建如下图所示(An efficient appraoch to construction of D(x,y,$\sigma$) is shown in Fig. 1.)</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.27-高斯差分金字塔构建.png" style="zoom: 200%;" />
+
+<p>​        论文中所提到的内容及其详细的解释我们刚刚已经进行了解释，相信读者现在再来读原文应该会明白文中的意思的。至于高斯差分金字塔的构建就比较简单了，他是在高斯金字塔的基础上通过相邻两层相减得到的，这也就是为什么叫高斯差分金字塔的原因，以及我们上文提到高斯金字塔需要s+3幅图像。我把原文的内容在这里给大家放一下，供大家参考。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The initial image is incrementally convolved with Gaussians to produce images separated by a constant factor k in scale space,shown stacked in the left column</span><br><span class="line">We choose to divide each octave of sacle space into an integer number,s,of intervals,so k= 2^(1/s). We must produce s+3 images in the stack of blurred images for each octave,so that final extrema detection covers a complete octave.</span><br></pre></td></tr></table></figure>
+
+<p>总结一下高斯金字塔的构建分为两部分：</p>
+<p>​        1)对图像做不同尺度的高斯模糊</p>
+<p>​        高斯模糊的过程上边我已经介绍了，使用高斯核对图像进行卷积操作，关于每层内部$\sigma$的取值及层间的$\sigma$的取值关系也已经介绍完成。下边我用代码给大家讲一下这块的过程，高斯核产生的函数上文已经定义过了，下边定义一下卷积：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convolve</span><span class="params">(kernel, img, padding, strides)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    :param kernel: 输入的核函数</span></span><br><span class="line"><span class="string">    :param img: 输入的图片</span></span><br><span class="line"><span class="string">    :param padding: 需要填充的位置</span></span><br><span class="line"><span class="string">    :param strides: 高斯核移动的步长</span></span><br><span class="line"><span class="string">    :return: 返回卷积的结果</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    result = <span class="literal">None</span></span><br><span class="line">    kernel_size = kernel.shape</span><br><span class="line">    img_size = img.shape</span><br><span class="line">    <span class="keyword">if</span> len(img_size) == <span class="number">3</span>: <span class="comment"># 三通道图片就对每个通道分别卷积</span></span><br><span class="line">        channel = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(img_size[<span class="number">-1</span>]): <span class="comment">#对每个通道进行填充</span></span><br><span class="line">            pad_img = np.pad(img[:,:,i],((padding[<span class="number">0</span>],padding[<span class="number">1</span>]),(padding[<span class="number">2</span>],padding[<span class="number">3</span>])),<span class="string">'constant'</span>) <span class="comment">#进行padding操作</span></span><br><span class="line">            temp = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range (<span class="number">0</span>,img_size[<span class="number">0</span>],strides[<span class="number">1</span>]):   <span class="comment">#进行卷积操作 高度</span></span><br><span class="line">                temp.append([])</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,img_size[<span class="number">1</span>], strides[<span class="number">0</span>]):  <span class="comment">#宽度</span></span><br><span class="line">                    val = (kernel * pad_img[j * strides[<span class="number">1</span>]:j * strides[<span class="number">1</span>] + kernel_size[<span class="number">0</span>],</span><br><span class="line">                                    k * strides[<span class="number">0</span>]:k * strides[<span class="number">0</span>] + kernel_size[<span class="number">1</span>]]).sum()  <span class="comment">#依次进行卷积操作</span></span><br><span class="line">                    temp[<span class="number">-1</span>].append(val)</span><br><span class="line">            channel.append(np.array(temp))</span><br><span class="line">        channel = tuple(channel) <span class="comment">#元组</span></span><br><span class="line">        result = np.dstack(channel) <span class="comment">#将列表中的数组沿深度方向进行拼接</span></span><br><span class="line">    <span class="keyword">elif</span> len(img_size) == <span class="number">2</span> :</span><br><span class="line">        channel = []</span><br><span class="line">        pad_img = np.pad(img, ((padding[<span class="number">0</span>], padding[<span class="number">1</span>]), (padding[<span class="number">2</span>], padding[<span class="number">3</span>])),</span><br><span class="line">                         <span class="string">'constant'</span>)  <span class="comment"># pad是填充函数 边界处卷积需要对边界外根据高斯核大小填0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range (<span class="number">0</span>,img_size[<span class="number">0</span>],strides[<span class="number">1</span>]):</span><br><span class="line">            channel.append([])</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,img_size[<span class="number">1</span>],strides[<span class="number">0</span>]):</span><br><span class="line">                val = (kernel * pad_img[j * strides[<span class="number">1</span>]:j * strides[<span class="number">1</span>] + kernel_size[<span class="number">0</span>],</span><br><span class="line">                                k * strides[<span class="number">0</span>]:k * strides[<span class="number">0</span>] + kernel_size[<span class="number">1</span>]]).sum()  <span class="comment"># 卷积的定义 相当于用高斯核做加权和</span></span><br><span class="line">                channel[<span class="number">-1</span>].append(val)</span><br><span class="line">        result = np.array(channel)</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<p>上边的代码还进行了padding操作，为了保证对边缘效果，填充操作就是我们在卷积神经网络中使用的操作，包括步长等变量。</p>
+<p>​         2)对图像做降采样(隔点采样)</p>
+<p>​        上边的过程只是进行高斯处理的过程，因为我们需要得到金子塔形状，图像的金字塔模型是指将原始图像不断降阶采样，得到一系列大小不一的图像，由大到小，从下到上构成的塔状模型。原图像为金字塔的第一组(Octative)，每次降采样所得到的新图像为金字塔的一组（每组一张图像），意思就是我们一组的图像是一样的，只是模糊处理不一样，但是每组使用的是同一张图片，金字塔组数的计算公式如下：<br>$$<br>o = log_2{min(M,N)}-t , t \in [0,log_2{min(M,N)}] \tag{7}<br>$$<br>其中M,N为原图像的大小，t为塔顶图像的最小维数的对数值。</p>
+<p>​        为了让尺度体现其连续性，高斯金字塔在简单降采样的基础上加上了高斯滤波，将图像金字塔每组含有多张高斯模糊图像(interval image)，另外，在进行降采样时，高斯金字塔上一组图像的初始图像（底层图像）是由前一组图像的倒数第三张图像隔点采样得到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Adjacent image scales are subtracted to produce the difference-of-Gaussian images shown on the right.</span><br><span class="line">Once a complete octave has been processed, we resample the Gaussian image that has twice the initial value of sigma by taking every second pixel in each row and column.</span><br></pre></td></tr></table></figure>
+
+<p>​        其中第二段提到一个将采样的过程，对于一幅图像而言，降采样就是每隔几行、几列进行取一点，组成一个新的图像，而论文中提到的是隔点取点(take every second pixel in each row and column),最后会将一个$n<em>n$的图像变为$\frac{n}{2}</em>\frac{n}{2}$的图像。</p>
+<p>​        下采样的过程用代码实现是很简单的:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">undersampling</span> <span class="params">(img,step = <span class="number">2</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    下采样</span></span><br><span class="line"><span class="string">    :param img: 输入图片</span></span><br><span class="line"><span class="string">    :param step: 降采样步长 默认为2（）缩小两倍</span></span><br><span class="line"><span class="string">    :return: 返回降采样结果</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> img[::step,::step]</span><br></pre></td></tr></table></figure>
+
+<p>高斯差分金字塔的构建其实就是对已经构建完成的高斯金字塔进行做差得到的金字塔，理解完上边的内容，我们就很容易能够理解下边代码内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDoG</span><span class="params">(img,n,sigma0,S= None,O=None)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    :param img: 输入图像</span></span><br><span class="line"><span class="string">    :param n: 有几层用于提出特征</span></span><br><span class="line"><span class="string">    :param sigma0: 输入的sigma</span></span><br><span class="line"><span class="string">    :param S: 金字塔每层有几张gauss滤波后的图像</span></span><br><span class="line"><span class="string">    :param O: 金字塔有几层</span></span><br><span class="line"><span class="string">    :return: 返回差分高斯金字塔和高斯金字塔</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> S == <span class="literal">None</span>:</span><br><span class="line">        S = n + <span class="number">3</span> <span class="comment"># 至少有4张 （第一张和最后一张高斯金字塔无法提取特征，差分以后的第一张和最后一张也无法提取特征）</span></span><br><span class="line">    <span class="keyword">if</span> O == <span class="literal">None</span>:</span><br><span class="line">        O = int(np.log2(min(img.shape[<span class="number">0</span>], img.shape[<span class="number">1</span>]))) - <span class="number">3</span>  <span class="comment"># 计算最大可以计算多少层 O=log2（min(img长，img宽））-3</span></span><br><span class="line">    k = <span class="number">2</span> ** (<span class="number">1.0</span>/n)</span><br><span class="line">    sigma = [[(k ** s) * sigma0 * (<span class="number">1</span> &lt;&lt; o) <span class="keyword">for</span> s <span class="keyword">in</span> range(S)] <span class="keyword">for</span> o <span class="keyword">in</span> range(O)]  <span class="comment"># 每一层 sigma按照 k^1/s * sigama0  排列 下一层的sigma都要比上一层sigma大两倍</span></span><br><span class="line">    sample = [undersampling(img, <span class="number">1</span> &lt;&lt; o) <span class="keyword">for</span> o <span class="keyword">in</span> range(O)]  <span class="comment"># 降采样取图片作为该层的输入</span></span><br><span class="line">    Guass_Pyramid = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(O):</span><br><span class="line">        Guass_Pyramid.append([]) <span class="comment">#声明二维空数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(S):</span><br><span class="line">            dim = int (<span class="number">6</span>*sigma[i][j]+<span class="number">1</span>) <span class="comment"># 通常，图像处理只需要计算（6*sigma+1）*(6*sigma+1)的矩阵就可以保证相关像素影像</span></span><br><span class="line">            <span class="keyword">if</span> dim % <span class="number">2</span> == <span class="number">0</span>: <span class="comment">#防止高斯核不是奇数</span></span><br><span class="line">                dim += <span class="number">1</span></span><br><span class="line">                dim += <span class="number">1</span></span><br><span class="line">            Guass_Pyramid[<span class="number">-1</span>].append(convolve(GuassianKernel(sigma[i][j], dim), sample[i],</span><br><span class="line">                                              [dim // <span class="number">2</span>, dim // <span class="number">2</span>, dim // <span class="number">2</span>, dim // <span class="number">2</span>],[<span class="number">1</span>, <span class="number">1</span>]))  <span class="comment"># 在第i层添加第j张 经过高斯卷积的 该图片四周扩展 5//2=2 用于高斯卷积</span></span><br><span class="line">    DoG_Pyramid = [[Guass_Pyramid[o][s + <span class="number">1</span>] - Guass_Pyramid[o][s] <span class="keyword">for</span> s <span class="keyword">in</span> range(S - <span class="number">1</span>)] <span class="keyword">for</span> o <span class="keyword">in</span> range(O)]  <span class="comment">#每一层中 上一张减去下一张得到高斯核</span></span><br><span class="line">    <span class="keyword">return</span> DoG_Pyramid,Guass_Pyramid,O  <span class="comment">#返回高斯金字塔和高斯差分金字塔</span></span><br></pre></td></tr></table></figure>
+
+<p>上边代码中使用的参数我们之前已经讲过，构建高斯差分金字塔的核心代码就是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DoG_Pyramid = [[Guass_Pyramid[o][s + <span class="number">1</span>] - Guass_Pyramid[o][s] <span class="keyword">for</span> s <span class="keyword">in</span> range(S - <span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
+
+<p>至此为止，整个高斯差分金子塔的构建已经讲述完毕。</p>
+<hr>
+<h3 id="7-局部极值点检测"><a href="#7-局部极值点检测" class="headerlink" title="7.局部极值点检测"></a>7.局部极值点检测</h3><img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.28-局部极值点检测.png" style="zoom:65%;" />
+
+<p>​        关键点是由DoG空间的局部极值点组成的，关键点的初步探查是通过同一组内各DoG相邻两层图像之间比较完成的。每一个像素点要和它所有的相邻点比较，看其是否比它的图像域和尺度域的相邻点大或者小。因此检测点所需要比较的点共26个点，分别为同尺度的8邻域内的点，和上下相邻尺度对应的9*2个点。高斯金字塔每组有(S+3)层，这个我们之前解释过，因此，高斯差分金字塔每组有(S+2)层。极值点的检测只在同一组中从第2层开始至倒数第2层为止的相邻层进行26个点DoG值的比较中寻找极大值或极小值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">In order to detect the local maxima and minima of D(x,y,sigma),each sample point is compared to its eight neighbors in the current image and nine neighbors in the scale above and below. It is selected only if it is larger than all of these neighbors or smaller than all of them.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(img.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(img.shape[<span class="number">1</span>]):</span><br><span class="line">        val = img[i][j]</span><br><span class="line">        eight_neiborhood_prev = img_prev[max(<span class="number">0</span>, i - <span class="number">1</span>):min(i + <span class="number">2</span>, 					img_prev.shape[<span class="number">0</span>]), max(<span class="number">0</span>, j - <span class="number">1</span>):min(j + <span class="number">2</span>, img_prev.shape[<span class="number">1</span>])]</span><br><span class="line">        eight_neiborhood = img_prev[max(<span class="number">0</span>, i - <span class="number">1</span>):min(i + <span class="number">2</span>, 						img_prev.shape[<span class="number">0</span>]),max(<span class="number">0</span>, j - <span class="number">1</span>):min(j + <span class="number">2</span>, img_prev.shape[<span class="number">1</span>])]</span><br><span class="line">        eight_neiborhood_next = img_prev[max(<span class="number">0</span>, i - <span class="number">1</span>):min(i + <span class="number">2</span>, 					img_prev.shape[<span class="number">0</span>]),max(<span class="number">0</span>, j - <span class="number">1</span>):min(j + <span class="number">2</span>, img_prev.shape[<span class="number">1</span>])]</span><br><span class="line">        <span class="comment"># 阈值化，在高斯差分金字塔中找极值</span></span><br><span class="line"> <span class="comment"># 如果某点大于阈值，并且，比周围8个点、上下18个点共26个点都大或者都小，则认为是关键点</span></span><br><span class="line">        <span class="keyword">if</span> np.abs(val) &gt; threshhold <span class="keyword">and</span> \</span><br><span class="line">                ((val &gt; <span class="number">0</span> <span class="keyword">and</span> (val &gt;= eight_neiborhood_prev).all() <span class="keyword">and</span> (val &gt;= 					eight_neiborhood).all() <span class="keyword">and</span> (val &gt;=            								 eight_neiborhood_next).all())</span><br><span class="line">                <span class="keyword">or</span> (val &lt; <span class="number">0</span> <span class="keyword">and</span> (val &lt;= eight_neiborhood_prev).all() <span class="keyword">and</span> (</span><br><span class="line">                val &lt;= eight_neiborhood).all() <span class="keyword">and</span> (val 				  					&lt;=eight_neiborhood_next).all())):</span><br></pre></td></tr></table></figure>
+
+<p>​        代码中有个threshold值，0.5*T/S,其中T=0.04，为了剔除一些噪声。        </p>
+<p>​        上边的代码只是我们比较检测点周围的26个点，虽然通过比较后我们能够确定出来一些点，但是并不是所有的点对我们都是有用的，有很多是没有用的，所以就需要后续的关键点的定位，后边我会对这一部分展开详细的叙述，下边我们先看一下论文中为确定参数所作的一些实验结果。</p>
+<h3 id="8-参数的确定"><a href="#8-参数的确定" class="headerlink" title="8. 参数的确定"></a>8. 参数的确定</h3><p>​        我把这部分定义为参数的确定，在原文中，这一部分是通过几个实验进行分析，得出相关结果，最终确定S=3,$\sigma$=1.6。下边我们先来看一下Lowe老兄的实验结果并进行分析。</p>
+<p><img src="D:%5CMyblog%5Csource_posts%5C%E5%B0%BA%E5%BA%A6%E4%B8%8D%E5%8F%98%E7%89%B9%E5%BE%81%E8%BD%AC%E6%8D%A2.assets%5C2020.09.28-%E5%AE%9E%E9%AA%8C%E5%8F%82%E6%95%B0%E7%A1%AE%E5%AE%9A.png" alt=""></p>
+<p>​            上边的线显示的是对经过转换后的图像在检测其匹配位置和尺度时所得到关键点的百分比。</p>
+<p>​            下边的线表示正确匹配关键点的数量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The top line in the first graph of Fig.3 shows the percent of keypoints that are detected at a matching location and scale in the transformed image.</span><br><span class="line">The lower line on this graph shows the number of key points that are correctly matched to a database</span><br></pre></td></tr></table></figure>
+
+<p>​            通过测试每个组(octave)中不同数量的层(scales)的影响来展示模拟结果,分析上图，我们很容易能够观察到S=3的时候效果最好。</p>
+<p>​            简单说明一下上图中两条线的意义，上图中其实已经有解释了，我将论文中对这两条线的解释说一下。左边图像横坐标为每组中样本层数的数量，纵坐标为重复性的概率，右边图纵坐标为关键点的数目。        </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Figure3 shows these simulation results used to examine the effect of varying the number of scales per octave at which the image function is smapled prior to extrema detection</span><br><span class="line">As this graph shows, the highest repeatability is obtained when sampling 3 scales per octave</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>刚才的实验确定了参数S，我们还需要确定参数$\sigma$:</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.28-sigma值确定.png" style="zoom:60%;" />
+
+<p>论文中是把$\sigma $的值确定为1.6的，虽然通过图像我们观察到，随着$\sigma$的增加，Repeatability还在继续增加，但是就效率而言，增大$\sigma$所带来的成本是不值的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">the results show that the repeatability comtinues to increase with sigma.</span><br><span class="line">However, there is a cost to using a large sigma in terms of efficiency, so we have chosen to use sigma= 1.6,which provides close to optimal repeatability.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SIFT</span><span class="params">(img, showDoGimgs=False)</span>:</span></span><br><span class="line">    <span class="comment"># 1. 建立高斯差分金字塔，</span></span><br><span class="line">    SIFT_SIGMA = <span class="number">1.6</span></span><br><span class="line">    SIFT_INIT_SIGMA = <span class="number">0.5</span>  <span class="comment"># 假设的摄像头的尺度</span></span><br><span class="line">    sigma0 = np.sqrt(SIFT_SIGMA ** <span class="number">2</span> - SIFT_INIT_SIGMA ** <span class="number">2</span>) <span class="comment">#初始sigma0</span></span><br><span class="line">    n = <span class="number">2</span><span class="comment">######</span></span><br><span class="line"></span><br><span class="line">    DoG, GuassianPyramid,octaves = getDoG(img, n, sigma0)  <span class="comment"># getDoG：得到高斯金字塔和高斯差分金字塔</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、关键点定位"><a href="#六、关键点定位" class="headerlink" title="六、关键点定位"></a>六、关键点定位</h2><p>​        通过前边的方法检测到极值点是离散空间的极值点，前边也简单阐述过所获得的极值点并不是十分准确，我们需要来精确确定关键点的位置和尺度，同时去除低对比度的关键点和不稳定的边缘相应点(因为DoG算子会产生较强的边缘响应)，依次来增强匹配稳定性、提高抗噪声能力。具体的操作流程将会在下面进行阐述，我把原文在进行这一步所叙述文字写一下，供大家进行理解。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Once a keypoint candidate has been  found by comparing a pixel to its neighbors, the next step is to perform a detailed fit to the nearby data for location,   scale, and ratio  of principal curvatures. This information allows points to be rejected that have low contrast (and are therefore sensitive to noise) or are poorly localized along an edge.</span><br></pre></td></tr></table></figure>
+
+<p>​        离散空间的极值点并不是真正的极值点，下图显示了二维函数离散空间得到的极值点与连续空间极值点的差别。利用已知的离散空间点插值得到的连续空间极值点大的方法叫做子像素插值(sub-pixel interpolation)。</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.30-离散空间极值点与连续空间极值点之间的关系.png" style="zoom: 67%;" />
+
+<p>​        Lowe在1999年提出该方法时并没有进行关键点的精确定位，只是简单的定位出样本点所在区域位置和尺度的关键点。2002年的时候，Brown和Lowe提出了一种新的方法（Brown, M. and Lowe, D.G. 2002. Invariant features from interest point groups. In British Machine Vision Conference, Cardiff, Wales, pp. 656–665.），通过拟合三维二次函数来精确确定关键点的位置和尺度，为了提高关键点的稳定性，对对尺度空间DoG函数进行曲线拟合，用泰勒展开公式来进行:</p>
+<p>$$<br>D(\mathbf{x})=D+\frac{\partial D^T}{\partial \mathbf{x}}\mathbf{x}+\frac{1}{2}\mathbf{x}^T\frac{\partial^2D}{\partial \mathbf {x}^2}\mathbf{x}\<br>\mathbf{x}=(x,y,\sigma)^T \tag{8}<br>$$<br>​        其实在我们用代码的实现的过程中，不会直接用公式10来进行实现，而是对公式10进行下面一系列的推到，直接对结果进行代码构建，但是公式10是我们理解下面的原型模式。</p>
+<p>任意一极值点在其$X_0=(x_0,y_0,\sigma_0)^T$处做三元二阶泰勒展开如下：<br>$$<br>f(\left[\matrix{x\y\\sigma}\right])=f(\left[\matrix{x_0\y_0\\sigma_0}\right])+<br>\left[\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial \sigma}\right]<br>\left(\left[\matrix{x\y\\sigma}\right]\left[\matrix{x_0\y_0\\sigma_0}\right]\right)\<br>+\frac{1}{2}\left(\left[\matrix{x\y\\sigma}\right]-\left[\matrix{x_0\y_0\\sigma_0}\right]\right)^T<br>\left[\matrix{\frac{\partial^2f}{\partial x \partial x},\frac{\partial^2f}{\partial x \partial y},\frac{\partial^2f}{\partial x \partial \sigma}\<br>\frac{\partial^2f}{\partial x \partial y},\frac{\partial^2f}{\partial y \partial y},\frac{\partial^2f}{\partial y \partial \sigma}\<br>\frac{\partial^2f}{\partial x \partial \sigma},\frac{\partial^2f}{\partial y \partial \sigma},\frac{\partial^2f}{\partial \sigma \partial \sigma},}\right]<br>\left(\left[\matrix{x\y\\sigma}\right]-\left[\matrix{x_0\y_0\\sigma_0}\right]\right) \tag{9}<br>$$<br>公式9的矩阵表示就是公式8，D就是f，D(X)就是f(X)</p>
+<p>上边公式中的偏导我们的求法是采用有限差分求导法进行的，我简单介绍一下有限差分求导法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The derivatives are estimated by taking differences of neighboring sample points</span><br></pre></td></tr></table></figure>
+
+<p>​        有限差分法以变量离散取值后对应的函数值来近似微分方程中独立变量的连续值。在有限差分方法中，我们放弃了微分方程中独立变量可以取连续值的特征，而关注独立变量离散取值后对应的函数值。但是从原则上说，这种方法仍然可以达到满意的计算精度。因为方程的连续数值解可以通过减少独立变量离散取值的间隔，或者通过离散点上的函数值插值计算近似得到。</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.30-有限差分求导.png" style="zoom: 67%;" />
+$$
+\frac{\partial f}{\partial x}=\frac{f_1-f_3}{2h}\\
+\frac{\partial f}{\partial y}=\frac{f_2-f_4}{2h}\\
+\frac{\partial^2 f}{\partial x^2}=\frac{f_1+f_3-2f_0}{h^2}\\
+\frac{\partial^2 f}{\partial x^2}=\frac{f_2+f_4-2f_0}{h^2}\\
+\frac{\partial^2 f}{\partial x\partial y}=\frac{(f_8+f_6)-(f_5+f_7)}{4h^2}\\
+$$
+其中f所对应的下标就是图中的数字。
+
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.30-有限差分求导2.png" style="zoom:67%;" />
+$$
+\frac{\partial f}{\partial \sigma} = \frac{f_2-f_4}{2h}\\
+\frac{\partial^2 f}{\partial \sigma^2} = \frac{f_2+f_4-2f_0}{h^2}\\
+\frac{\partial^2 f}{\partial x \partial \sigma} = \frac{(f_8+f_6)-(f_5+f_7)}{4h^2}\\
+$$
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\有限差分求导3.png" style="zoom:67%;" />
+$$
+\frac{\partial^2 f}{\partial y \partial \sigma} = \frac{(f_8+f_6)-(f_5+f_7)}{4h^2}\\
+$$
+以上就是有限差分求导法的全部过程，读者可以对应相关图片并结合下面代码进行理解。
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">img = DoG[o][s]</span><br><span class="line">prev = DoG[o][s - <span class="number">1</span>]</span><br><span class="line">next = DoG[o][s + <span class="number">1</span>]</span><br><span class="line">dD = [(img[x, y + <span class="number">1</span>] - img[x, y - <span class="number">1</span>]) * deriv_scale, <span class="comment">#对x求偏导</span></span><br><span class="line">      (img[x + <span class="number">1</span>, y] - img[x - <span class="number">1</span>, y]) * deriv_scale,</span><br><span class="line">      (next[x, y] - prev[x, y]) * deriv_scale]</span><br><span class="line">v2 = img[x, y] * <span class="number">2</span></span><br><span class="line">dxx = (img[x, y + <span class="number">1</span>] + img[x, y - <span class="number">1</span>] - v2) * second_deriv_scale</span><br><span class="line">dyy = (img[x + <span class="number">1</span>, y] + img[x - <span class="number">1</span>, y] - v2) * second_deriv_scale</span><br><span class="line">dss = (next[x, y] + prev[x, y] - v2) * second_deriv_scale</span><br><span class="line">dxy = (img[x + <span class="number">1</span>, y + <span class="number">1</span>] - img[x + <span class="number">1</span>, y - <span class="number">1</span>] - img[x - <span class="number">1</span>, y + <span class="number">1</span>] + img[x - <span class="number">1</span>, y - <span class="number">1</span>]) * 	   cross_deriv_scale</span><br><span class="line">dxs = (next[x, y + <span class="number">1</span>] - next[x, y - <span class="number">1</span>] - prev[x, y + <span class="number">1</span>] + prev[x, y - <span class="number">1</span>]) *              		cross_deriv_scale</span><br><span class="line">dys = (next[x + <span class="number">1</span>, y] - next[x - <span class="number">1</span>, y] - prev[x + <span class="number">1</span>, y] + prev[x - <span class="number">1</span>, y]) *       			   cross_deriv_scale</span><br></pre></td></tr></table></figure>
+
+<p>对$D(\mathbf{x})$求导，并让方程等于零，我们可以得到极值点的偏移量为</p>
+<p>The loaction of the extremum, $\mathbf{\hat x}$, is determined by taking the derivative of this function with respect to $\mathbf{x}$ and setting it to zero, giving:<br>$$<br>\mathbf{\hat x}= -\frac{\partial^2D^{-1}}{\partial \mathbf{x}^2} \frac{\partial D}{\partial \mathbf{x}} \tag{10}<br>$$<br>$\mathbf{\hat x}$代表相对插值中心的偏移量，当它在任一维度上的偏移量(x,y,$\sigma$)大于0.5时，意味着插值中心已经偏移到它的邻近点上，所以必须改变当前关键点的位置，同时在新的位置上反复插值直到收敛。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">H = [[dxx, dxy, dxs],</span><br><span class="line">     [dxy, dyy, dys],</span><br><span class="line">     [dxs, dys, dss]]</span><br><span class="line">X = np.matmul(np.linalg.pinv(np.array(H)), np.array(dD)) <span class="comment">#求公式10的绝对值</span></span><br><span class="line">xi = -X[<span class="number">2</span>]</span><br><span class="line">xr = -X[<span class="number">1</span>]</span><br><span class="line">xc = -X[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p>上边的代码就是对公式10的求解,其中H就是后边我进行消除边缘响应是所用到的Hessian矩阵，大家在这里可以先记住这个东西是Hessian矩阵，然后我们后边还会进行介绍。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> np.abs(xi) &lt; <span class="number">0.5</span> <span class="keyword">and</span> np.abs(xr) &lt; <span class="number">0.5</span> <span class="keyword">and</span> np.abs(xc) &lt; <span class="number">0.5</span>:</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>If the offset $\mathbf{\hat x}$ is larger than 0.5 in any dimension, then it means that the extremum lies closer to a different sample point. the sample point is changed and the  interpolation performed instead about that point. The final offset $ \mathbf {\hat x}  $ is added to the location of its sample point to get the interpolated estimate for the location of the extremum.</p>
+<p>将公式10带入公式9，得到对应极值点：</p>
+<p>The function value at the extrema, $D(\mathbf{\hat{x}})$, is useful for rejecting unstable extrema with low contrast. This can be obtained by substitutinng Eqs(10) into (9),giving:<br>$$<br>D(\mathbf{\hat x}) = D+\frac{1}{2}\frac{\partial D^T}{\partial \mathbf{x}}\mathbf{\hat x} \tag{11}<br>$$<br>下边是对公式11的复现，其中t就是对公式11后半部分的解释。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = (np.array(dD)).dot(np.array([xc, xr, xi]))</span><br><span class="line">contr = img[x, y] * img_scale + t * <span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+
+<p>文中提到，过小的点容易受噪声的干扰而变得不稳定，所以当值小于0.03时，本文认为应该舍弃。但是Rob Hess 在实现代码的是用的不是0.03，而是 T/S ，其中T=0.04</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">For the experiments in this paper, all extrema with a value of D(\hat x) less than 0.03 were discarded</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 舍去低对比度的点 :|fx| &lt; T/S  为了和sigma的s区分，S用的是n,也就是我们上文提到的octavez中的scale</span></span><br><span class="line"><span class="keyword">if</span> np.abs(contr) * n &lt; contrastThreshold:</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span>, x, y, s</span><br></pre></td></tr></table></figure>
+
+<p>下边我给大家展示一下论文经过上述步骤所得到的效果，让大家对SIFT进行特征提取有个视觉上的理解。</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.30-阈值处理效果.png" style="zoom:67%;" />
+
+<p>a图是原图像，b图是我们进行关键点定位前得到的832个关键点，c图是舍弃$D(\mathbf{\hat x})$小于0.03的的值后所得到的729关键点。d图是需要我们经过下面的介绍后进行操作得到的效果图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(b) shows the 832 keypoints at all detected maxima adn minima of the difference-of-Gaussian function, while(c) shows the 729 keypoints that remian follwing removal of those with a value of D(\hat x) less than 0.03.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Eliminating-Edge-Responses-消除边缘响应"><a href="#Eliminating-Edge-Responses-消除边缘响应" class="headerlink" title="Eliminating Edge Responses(消除边缘响应)"></a>Eliminating Edge Responses(消除边缘响应)</h4><p>​        为了提高稳定性，仅仅剔除对比度低的关键点是不够的，即使沿着边缘的位置确定的很差，高斯差分函数沿着边缘也会有很强的反应，从而产生噪音。一个定义不好的高斯差分函数的极值在横跨边缘的地方有较大曲率，而在垂直边缘的方向有较小的主曲率。</p>
+<h5 id="Heesian-矩阵-（黑塞矩阵）"><a href="#Heesian-矩阵-（黑塞矩阵）" class="headerlink" title="Heesian 矩阵 （黑塞矩阵）"></a>Heesian 矩阵 （黑塞矩阵）</h5><p>​        我们为了消除边缘响应，其实会用到Hessian矩阵，下面我们先来简单说一下Hessian矩阵，先把百度百科对Hessian矩阵的介绍写一下：</p>
+<p>​        黑塞矩阵（Hessian Matrix）,是一个多元函数的二阶偏导数构成的方阵，描述了函数的局部曲率，利用黑塞矩阵可以判定多元函数的极值问题，在工程实际问题的优化设计中，所列的目标函数往往很复杂，为了使问题简化，常常将目标函数在某点邻域展开成泰勒多项式来逼近原函数，此时函数在某点泰勒展开式的矩阵形式中会设计到黑塞矩阵—百科词条。其实上文我也给大家看过hessian矩阵，确实是在展开泰勒公式时出现的。</p>
+<p>​        黑塞矩阵是由目标函数f在点X处的二阶偏导数组成的$n\times n$阶对称矩阵，我把黑塞矩阵的模样给大家看一下：</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.30-黑塞矩阵1.png" style="zoom:80%;" />
+
+<p>​        论文中所提到的hessian矩阵，以及我们在进行实验的hessian矩阵我们在公式9中已经出现了。那么hessian矩阵的意义又是什么呢？</p>
+<p>​        二阶导数表示导数的变化规律，如果函数是一条曲线，且曲线存在二阶导数，那么二阶导数表示的就是曲线的曲率，因为我们以前学过曲率公式$k=\frac{y^{‘’}}{(1+y{‘2})^\frac{3}{2}}$。假如导数给定的情况下，曲率就和二阶导数正相关，曲率越大，图像就越弯曲。因此，多维空间的一个点的二阶导数就表示该点梯度下降的快慢。在二维图像中，一阶导数是图像灰度变化即灰度梯度，二阶导数就是灰度变化程度，二阶导数越大，灰度变化越不具有线性。</p>
+<p>​        下面我引用网上一篇博客来做一个直观的介绍，博客地址我会放在本文末尾，因为对于hessian矩阵我以前也没有了解，本来只需要讲解一下SIFT这一部分需要用到hessian矩阵就可以了，但是为了完整性，我还是决定讲一下hessian矩阵来便于大家来理解。</p>
+<p>​        介绍一下二次型最优化，最小化二次型函数$f(x)= x^TAx$, 其中A是实对称二阶矩阵，即hessian矩阵 A=[1, 0.5;  0.5, 1], $x=[x_1,x_2]^T \in R^2$,通过对该问题的优化发现，结果与矩阵A的特征值相关，并且其特征向量及特征值分别为，特征值0.5所对应的特征向量为[-0.7071,0.7071],特征值1.5对应的特征向量为[0.7071,0.7071],我们来观察一下二次型函数以及对应的等高线：</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.09.30-二次型实例.png" style="zoom: 50%;" />
+
+<p>​        等高线越密集的地方，说明函数值变化较快，而这个函数变化最快的方向是特征向量[0.7071,0.7071]对应的方向，等高线越稀疏的地方，说明函数值变化较慢，而变化较慢的方向既是特征向量[-0.7071,0.7071]所对应的方向，而且，较大特征值所对应的特征向量方向上的函数值变化最快，较小特征值所对应的特征向量方向上的函数值变化最慢。</p>
+<p>​        我们介绍这一块的本意是为了应用hessian矩阵来消除边缘响应，那么边缘到底是什么特征呢？</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.01-hessian矩阵模型.png" style="zoom:60%;" />
+
+<p>如上图所示，一个二维平面上的一条直线，图像的特征具体可以描述为：沿着直线方向，亮度变化极小，垂直于直线方向，亮度由暗变亮，再由亮变暗，沿着这个方向，亮度变化很大。可以将边缘图像分布特征与二次型函数进行类比，如上边右边的图，我们可以找到两个方向，一个方向图像梯度变化最慢，另一个方向图像梯度变化最快。因此图像中的边缘特征与二次型函数的图像就能够对应在一起，而上边我们也说了，二阶导数反应的是图像梯度变化的快慢，而hessian矩阵的形式我们也见到了，因此，这也就是为什么能够使用hessian矩阵来对边缘进行检测以及进行边缘响应的消除。</p>
+<p>​        Hessian matrix实际上就是多变量情形下的二阶导数，描述了各个方向上灰度梯度的变化，使用对应点的hessian矩阵得到的特征向量以及对应的特征值，较大特征值对应的特征向量是垂直于直线的，较小特征值对应的特征向量是沿着直线方向的。</p>
+<p>我们本文中使用的hessian矩阵以及在实现过程中使用的是二阶矩阵：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The principal curvatures can be computed from a <span class="number">2</span>*<span class="number">2</span> Hessian matrix, H, computed at the location and scale of the keypoint:</span><br></pre></td></tr></table></figure>
+
+<p>$$<br>H=\left[\matrix{D_{xx}&amp; D_{xy}\ D_{xy}&amp; D_{yy}}\right] \tag{12}<br>$$</p>
+<p>H特征值和D的主曲率是成比例的（Harris, C. and Stephens, M.1988.Acombined corner and edge detector. In Fourth Alvey Vision Conference, Manchester, UK, pp. 147–151），因此在此基础之上，我们就不用准确来计算特征值，我们转而关心这个比例，假设较大特征值为$\alpha$,较小特征值为$\beta$,因为已知两个特征值后，我们就可以计算H的迹和行列式了，公式我们以前在线性代数中都学过：<br>$$<br>Tr(H) = D_{xx} +D_{yy} = \alpha +\beta \<br>Det(H) = D_{xx}D_{yy} -(D_{xy})^2=\alpha \beta \tag{12}<br>$$<br>如果行列式为零，则应该将该极值点丢弃,即 Det(H)&lt;0 ,舍去X</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用Hessian矩阵的迹和行列式计算主曲率的比值</span></span><br><span class="line">tr = dxx + dyy</span><br><span class="line">det = dxx * dyy - dxy * dxy</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">In the unlikely event that the determinat is negative, the curvatures have different signs so the point is discared as not being an extremum.</span><br></pre></td></tr></table></figure>
+
+<p>然后我们确定两个特征值之间的关系，假设$\alpha = r\beta$,其中$r$是一个比例来使较大特征值与较小特征值之间等式成立。然后我们会得到下边的关系：<br>$$<br>\frac{Tr(H)^2}{Det(H)}=\frac{(\alpha +\beta)^2}{\alpha \beta}= \frac{(\gamma \beta+\beta)^2}{\gamma\beta^2}=\frac {(r+1)^2}{r} \tag{13}<br>$$</p>
+<p>​        因此该公式的值仅仅取决于$\gamma$的值，而不是特征值本身，这样对应计算来说是非常有效率的。而且我们通过公式（13）能够知道，该公式的值在两个特征值相等时最小，随着$\gamma$的增大而增大，说明两个特征值的比值越大，即在某一点方向的梯度值越大，而在另一个方向的梯度值越小，而边缘恰恰就是这种情况，我们在前边其实也讲过，所以为了剔除边缘响应点，只需要让该比值小于一定的阈值即可，因为值越大的话，两个方向的梯度变化就很大，肯定是边缘响应点了，所以我们需要检测下式是否成立就可以：<br>$$<br>\frac{Tr(H)^2}{Det(H)}&lt;\frac{(r+1)^2}{r} \tag{14}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> det &lt;= <span class="number">0</span> <span class="keyword">or</span> </span><br><span class="line">   tr * tr * edgeThreshold &gt;= (edgeThreshold + <span class="number">1</span>) * (edgeThreshold + <span class="number">1</span>) * det:</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span>,x,y,s   <span class="comment">#edgeThreshold 为r 值为10</span></span><br></pre></td></tr></table></figure>
+
+<p>如果成立，则保留该关键点，反之则剔除该关键点。在论文中，$\gamma$的取值设置为10。还记得我们前边介绍关键点提取的效果图吗？还有一幅（d）图片没说，（d）图片所展示的效果就是经过我们这一步实现后的效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The Eq depends only on the ratio of the eigenvalues rather than their individual values. The quantity Eq(13) is at minimum when the two eigenvalues are equal and it increases with r.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="七、关键点方向分配"><a href="#七、关键点方向分配" class="headerlink" title="七、关键点方向分配"></a>七、关键点方向分配</h2><p>​        基于图像局部的梯度方向，分配给每个关键点位置一个或多个方向。所有后面的对图像数据的操作都相对于关键点的方向、尺度和位置进行变换，从而提供对于这些变换的不变性。</p>
+<p>​        因为这一步是关键点方向分配，所以需要对我们上一步得到的关键点进行处理，围绕该点选择一个窗口，窗口为圆形区域，以该特征点为中心，半径为3$\sigma$作为一个圆域，窗口内各采样点的梯度方向构成一个直方图，根据直方图的峰值确定特征点的主方向，直方图的峰值确定以后，任何大于峰值80%的方向创建一个具有该方向的特征点，这个方向认为是特征点的辅方向，因此，对于多峰值的情况，在同一位置和尺度就会产生多个具有不同方向的关键点，就是将该特征点复制成多份特征点，除了方向$\sigma$不同，$x,y,\sigma$都相同。        </p>
+<p>​        窗口内各采样点的梯度方向和梯度幅值计算公式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">For each image sample, L(x,y), at this scale, the gradient magnitude, m(x,y),and orientation,θ(x,y),is precomputed using pixel differences:</span><br></pre></td></tr></table></figure>
+
+<p>$$<br>m(x,y)= \sqrt{(L(x+1,y)-L(x-1,y))^2+(L(x,y+1)-L(x,y-1))^2}\ </p>
+<p>\tag{15}<br>$$</p>
+<p>$$<br>\theta(x,y)=\tan^{-1}((L(x,y+1)-L(x,y-1))/(L(x+1,y)-L(x-1,y))) \tag{16}<br>$$</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.02-梯度幅值.png" style="zoom:60%;" />
+
+<p>(a)图像梯度方向角$\theta$和幅值$m$, (b)特征点为中心，$3\times 1.5\sigma$为半径的范围内计算高斯图像的方向角和梯度。</p>
+<p>​        2004年的论文其实对这一块的讲解并不是很细致，其实整篇论文好多细节的东西Lowe老兄也没有将，可能他觉得没讲的东西是我们都了解过的，但是对于我们来说就不是很友好了。我先来把这位老兄的叙述给大家看一下，中心思想就是这些，但是具体实施起来可能会不一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">An orientation histogram is formed from the gradient orientations of sample points within a region around the keypoint. The orientation histogram has 36 bins covering the 360 degree range of orientations. </span><br><span class="line">Each sample added to the histogram is weighted by its gradient magnitude and by a Gaussian-weighted circular window with a σ that is 1.5 times that of the scale of the keypoint.</span><br></pre></td></tr></table></figure>
+
+<p>为了构建上面所说的直方图，每个直方图分为36柱，每10°为一柱，我们需要完成特征点邻域内的高斯图像的梯度计算，然后才能使用直方图统计邻域内像素的梯度方向和幅值。计算过程为公式(15)(16)所陈述的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">expf_scale = <span class="number">-1.0</span> / (<span class="number">2.0</span> * sigma * sigma)</span><br><span class="line">dx = (img[y, x + <span class="number">1</span>] - img[y, x - <span class="number">1</span>])</span><br><span class="line">dy = (img[y - <span class="number">1</span>, x] - img[y + <span class="number">1</span>, x]) <span class="comment">#注意，这里因为传入参数不同，所以发生改变</span></span><br><span class="line"></span><br><span class="line">X.append(dx)</span><br><span class="line">Y.append(dy)</span><br><span class="line">W.append((i * i + j * j) * expf_scale)</span><br><span class="line">k += <span class="number">1</span></span><br><span class="line">length = k</span><br><span class="line"></span><br><span class="line">W = np.exp(np.array(W))</span><br><span class="line">Y = np.array(Y)</span><br><span class="line">X = np.array(X)</span><br><span class="line">Ori = np.arctan2(Y,X)*<span class="number">180</span>/np.pi</span><br><span class="line">Mag = (X**<span class="number">2</span>+Y**<span class="number">2</span>)**<span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+
+<p>刚才的代码中出现了两句代码大家应该不是很熟悉：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">expf_scale = <span class="number">-1.0</span> / (<span class="number">2.0</span> * sigma * sigma)</span><br><span class="line">W.append((i * i + j * j) * expf_scale)</span><br><span class="line">W = np.exp(np.array(W))</span><br></pre></td></tr></table></figure>
+
+<p>上边代码所应用的公式是：<br>$$<br>W_{i,j}= e^{\frac{-(i^2+j^2)}{2\times(1.5\sigma)^2}} \tag{17}<br>$$<br>​        公式中的$\sigma$使用1.5$\sigma$,是因为论文中说的，刚才已经展示了:”by a Gaussian-weighted circular window with a σ that is 1.5 times “。上边公式的作用就是加权，在计算完梯度幅值后需要对其进行加权来构建直方图，下边也会介绍这一步骤。那么为什么我们需要对每个点梯度幅值要使用高斯权重呢？因为SIFT算法只考虑了尺度和旋转的不变性，并没有考虑仿射不变性。通过对各点梯度幅值进行高斯加权，是特征点附近的梯度幅值有较大的权重，这样可以部分弥补因没有仿射不变性而产生的特征点不稳定的问题。</p>
+<p>因为我们已经通过公式（15）（16）完成特征邻域的高斯图像的梯度计算，需要使用直方图统计邻域内像素的梯度方向和幅值。</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.02-梯度直方图.png" style="zoom:60%;" />
+
+<p>​        上边展示的就是梯度方向及其直方图，至于为什么正方形的长为$2 \times\ 3\times1.5\sigma$,是因为我们的尺度采样采用的是3$\sigma$原则，而刚才也介绍了需要用1.5$\sigma$进行加权，所以邻域窗口半径为$3\times1.5\sigma$。绿色格点代表邻域范围，黑色箭头指向代表梯度方向，箭头长度代表梯度幅值。</p>
+<p>​        介绍一下右边的直方图，横轴是梯度方向角，纵轴是梯度方向角对应的梯度幅值，但是经过高斯加权后的，也就是上边我单独介绍的代码。梯度方向直方图将0°~360°的范围，每10°分为一个柱状，共分36个柱状。直方图的峰值代表了该特征点处邻域内梯度的主方向，即该特征点的主方向。</p>
+<p>​        下边来详细介绍一下梯度方向直方图的生成过程：</p>
+<p>​        1）生成邻域内给像素的高斯权重。</p>
+<p>​        使用公式(17)$W_{i,j}= e^{\frac{-(i^2+j^2)}{2\times(1.5\sigma)^2}}$生成权重，其中$(i,j)$为该点距离特征点的相对位置，如上图中所标注的那样，左上角和右下角的像素分别距离中心特征点$(0,0)$的想读位置坐标为$(-4,-4),(4,4)$。</p>
+<p>​        2）生成直方图</p>
+<p>​        遍历邻域内每个点，判断其梯度方向，将其加入到相应的梯度方向直方图中，纵坐标长度为梯度幅值的加权，下面用例子来帮助大家理解这句话的含义：</p>
+<p>​        假设左上角（-4，4）点梯度方向为22°，梯度幅值为mag，根据直方图范围，hist[0]:0°<del>9°; hist[1]:10°</del>19°; hist[2]:20°~24°，因此需要将其加入hist[2]中。那么纵坐标的值是什么呢？这就要用到我们前边求得的W来进行加权，加入量的为$mag\times W_{-4,4}$，因此$hist[2]=hist[2]+mag\times W_{-4,4}$，然后根据此方法，遍历整个邻域，统计出该点处的梯度方向直方图。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(length):  <span class="comment">#BinNum为常值36</span></span><br><span class="line">       bin = int(np.round((BinNum / <span class="number">360.0</span>) * Ori[k]))</span><br><span class="line">       <span class="keyword">if</span> bin &gt;= BinNum:</span><br><span class="line">           bin -= BinNum</span><br><span class="line">       <span class="keyword">if</span> bin &lt; <span class="number">0</span>:</span><br><span class="line">           bin += BinNum</span><br><span class="line">       temphist[bin] += W[k] * Mag[k] <span class="comment">#加权</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>​        在获取主方向之前，我们为了防止某个某个梯度方向角度因受到噪声的干扰而改变，还需要对梯度方向直方图进行平滑处理，平滑公式为：<br>$$<br>H(i) = \frac{h(i-2)+h(i+2)}{16}+\frac{4 \times h(i-1)+h(i+1)}{16}+\frac{6 \times h(i)}{16} ,    i = 0,…,15 \tag{18}<br>$$<br>其中h和H分别表示平滑前和平滑后的直方图。由于角度是循环的，即0°=360°，如果出现h(j),j超出了（0,….15）的范围，那么可以通过圆周循环的方法找到它所对应与区间[0°，360°]之间的值，如$h(-1)=h(15)$。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hist = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(BinNum):</span><br><span class="line">    hist.append((temphist[i] + temphist[i+<span class="number">4</span>]) * (<span class="number">1.0</span> / <span class="number">16.0</span>) + (temphist[i+<span class="number">1</span>] + 	temphist[i+<span class="number">3</span>]) * (<span class="number">4.0</span> / <span class="number">16.0</span>) + temphist[i+<span class="number">2</span>] * (<span class="number">6.0</span> / <span class="number">16.0</span>)) <span class="comment">#i=公式中的i-2</span></span><br></pre></td></tr></table></figure>
+
+<p>​        平滑处理后直方图的峰值代表了该特征点处领域梯度的方向，以直方图中最大值作为该关键点的主方向。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 得到主方向</span></span><br><span class="line">maxval = max(hist)</span><br></pre></td></tr></table></figure>
+
+<p>​        我们从上面的直方图可以看出，直方图的一个柱状表示一个角度范围，这样得到的主方向或者辅方向是一个角度区间，需要进行抛物线插值来求出主方向和辅方向的角度，假设我们已经得到了第i柱所代表的方向为特征点的主方向，则拟合公式为：<br>$$<br>B= i+\frac{H(i-1)-H(i+1)}{2\times (H(i-1)+H(i+1)-2 \times H(i))}, i=0,…,35 \tag{19}<br>$$</p>
+<p>$$<br>\theta = 360-10\times B<br>$$</p>
+<p>其中，H为由经过平滑后的直方图，角度θ的单位是度。由于角度是循环的，即0°=360°，如果出现H(j),j超出了（0,….15）的范围，那么可以通过圆周循环的方法找到它所对应与区间[0°，360°]之间的值，如$H(-1)=H(15)$。</p>
+<p>下边解释一下上边的拟合公式：</p>
+<p>​        经过抛物线插值后我们用抛物线顶点横坐标作为主方向的角度，此时主方向是一个值，因为三个点就可以确定一条抛物线，因为我们选取了$H(i-1),H(i),H(i+1)$，然后我们来把公式(19)推导一下：</p>
+<p>​        设插值抛物线方程为$h(t) = at^2+bt+c$,其中a,b,c，为抛物线的系数，t为自变量，$t\in[-1,1]$,利用我们中学的知识，我们知道$t_{max}=-\frac {b}{2a}$,把t的三个取值带入方程：<br>$$<br>\left { \begin{array}{}h(-1)=a-b+c\ h(0)=c\h(1)=a+b+c \end{array}\right.<br>$$<br>所以能够求出a,b,c<br>$$<br>\left { \begin{array}{}a=[h(1)+h(-1)]/2-h(0)\b=[h(1)-h(-1)]/2 \ c= h(0)\end{array}\right.<br>$$<br>所以:<br>$$<br>t_{max}=-\frac {b}{2a}=\frac {h(-1)-h(1)}{2[h(-1)+h(1)-2h(0)]}<br>$$<br>因为上述t的范围是[-1,1],因此相当于在此范围内i=0,所以在整个直方图中的索引号为：<br>$$<br>i+\frac{H(i-1)-H(i+1)}{2\times (H(i-1)+H(i+1)-2 \times H(i))}<br>$$<br>至此为止，公式（19）推导完成，原文对这部分的介绍仅仅有一句话，刚开始看到这句话的时候都没怎么注意，Lowe老兄还真是不写废话。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Finally, a parabola is fit to the 3histogram values closest to each peak to interpolate the peak position for better accuracy</span><br></pre></td></tr></table></figure>
+
+<p>​        每个特征点除了必须分配一个主方向外，还可能有一个或更多个辅方向，增加辅方向的目的是为了增强图像匹配的鲁棒性。辅方向的定义是，当存在另一个柱体高度大于主方向柱体高度的80%时，则该柱体所代表的方向角度就是该特征点的辅方向。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The highest peak directions in the histogram is detected, and then any other local peak than is within 80% of the highest peak is used to also create a keypoint with the orientation</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SIFT_ORI_PEAK_RATIO =0.8，为了是否大于判断80%</span></span><br><span class="line">mag_thr = omax * SIFT_ORI_PEAK_RATIO</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(BinNum):</span><br><span class="line">    <span class="keyword">if</span> k &gt; <span class="number">0</span>:</span><br><span class="line">        l = k - <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        l = BinNum - <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> k &lt; BinNum - <span class="number">1</span>:</span><br><span class="line">        r2 = k + <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        r2 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> hist[k] &gt; hist[l] <span class="keyword">and</span> hist[k] &gt; hist[r2] <span class="keyword">and</span> hist[k] &gt;= mag_thr:</span><br><span class="line"><span class="comment">#进行抛物线插值       </span></span><br><span class="line">    	bin = k + <span class="number">0.5</span> * (hist[l]-hist[r2]) /(hist[l] - <span class="number">2</span> * hist[k] + hist[r2])</span><br><span class="line">        <span class="keyword">if</span> bin &lt; <span class="number">0</span>:</span><br><span class="line">            bin = BinNum + bin</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> bin &gt;= BinNum:</span><br><span class="line">                bin = bin - BinNum</span><br><span class="line">        temp = point[:]</span><br><span class="line">        temp.append((<span class="number">360.0</span>/BinNum) * bin)</span><br><span class="line">        KeyPoints.append(temp)</span><br></pre></td></tr></table></figure>
+
+<p>​        至此为止，这一部分的工作全部完成，前边我们实现了用两个信息量来表示一个特征点，即位置和尺度，现在，到目前为止，我们对特征点的表示形式又增加了一个信息量——方向，即$K(x,y,\sigma,\theta)$.如果某个特征点还有一个辅方向，则这个特征点就要用两个值来表示$K(x,y,\sigma,\theta_1)$，$K(x,y,\sigma,\theta_2)$,其中,$\theta_1$为主方向，$\theta_2$为辅方向，其他变量不变。</p>
+<h2 id="八、局部图片描述符"><a href="#八、局部图片描述符" class="headerlink" title="八、局部图片描述符"></a>八、局部图片描述符</h2><p>​        通过我们上边步骤，每个特征点被分配了坐标位置、尺度和方向。在图像局部区域内，这些参数可以重复的用来描述局部二维坐标系统，因为这些参数具有不变性。使用这种方法的灵感来源于1997年Edelman提出的方法,下面就把原文写一下，就不展开介绍了，感兴趣的可以看一下原始论文（Edelman, S., Intrator, N., and Poggio, T. 1997. Complex cells and object recognition. Unpublished manuscript: <a href="http://kybele.psych.cornell.edu/∼edelman/archive" target="_blank" rel="noopener">http://kybele.psych.cornell.edu/∼edelman/archive</a>. html）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Their proposed representation was based upon a model of biological version, in particular of complex neurons  in primary visual cortex. These complex neurons respond to a gradient at a particular orientation and spatial frequency, but the location of the gradient on the retina is allowed to shift over a small receptive filed rather than being precisely localized.</span><br></pre></td></tr></table></figure>
+
+<p>​        下面来计算局部图像区域的描述符，描述符即具有可区分性，又具有对某些变量的不变性，如光亮或三维视角。这些描述子不但包括关键点，也包含关键点周围对其有贡献的像素点，并且描述符应该有较高的独特性，以便于提高特征点正确匹配的概率。SIFT描述子是关键点邻域高斯图像梯度统计结果的一种表示，通过对关键点周围图像区域分块，计算块内梯度直方图，生成具有独特性的向量，这个向量是该区域图像信息的一种抽象，具有唯一性。</p>
+<p><img src="D:%5CMyblog%5Csource_posts%5C%E5%B0%BA%E5%BA%A6%E4%B8%8D%E5%8F%98%E7%89%B9%E5%BE%81%E8%BD%AC%E6%8D%A2.assets%5C2020.10.03-%E6%8F%8F%E8%BF%B0%E7%AC%A6.png" alt=""></p>
+<p>​        上图展示的是关键点描述符的计算，左边是图像梯度图像，右边是关键点描述符。描述符是与特征点所在的尺度有关的，所以描述特征点是需要在该特征点所在的高斯尺度图像上进行的，在高斯尺度图像上，以特征点为中心，将其附近邻域划分为$d\times d$个子区域，论文中取d=4,上图下边的解释也说了，”the experiments in this paper use 4 x 4 descriptors computed from a 16 x 16 sample array”.所以上图只是为了让我们理解所画，在真正的实验中，并没有使用2 x 2的描述符，所以计算的样本集合也不是左图中的8x8区域。每个子区域都是一个正方形，正方形的边长为3$\sigma$,也就是说正方形的边长有$int(3\sigma)$个像素，$\sigma$为相对于特征点所在的高斯金字塔的组的基准层图像的尺度，这样讲可能有点抽象，我们来看一张16邻域的图片。</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\202010.03-16邻域改.png" style="zoom:60%;" />
+
+<p>​        上图中将特征点附近的邻域划分成$4\times 4$个子区域，每个子区域作为一个种子点，每个种子点有8个方向，因为此时的划分范围是45°，这也就是为什么在右图中我们只看到八个方向。理论上来说，每个子区域的矩形边长为$3\sigma$,即一个子区域中包含$3\sigma \times 3\sigma$个像素，16个子区域的像素个数为$4 \times4 \times3\sigma\times 3 \sigma$。但是在实际应用中，由于如果邻域中像素的梯度方向为33°时，不能直接把它当作30°来进行处理，应该要把它按照相邻的梯度方向30°和40°的距离进行插值处理，这也就需要我们将描述特征点窗口边长变为$3\sigma (d+1)$,d就是我们在上边提到过，此时d取的值为4。因此整个区域的像素变为。</p>
+<p>​        为了保证特征点的具有旋转不变性，还需要以特征点为中心，将刚才确定的特征点邻域区域旋转θ（θ就是该特征点的方向）。由于是对正方形进行旋转，为了使旋转后的区域包括整个正方形，应该以从正方形的中心到它的边的最长距离为半径，也就是正方形对角线长度的一半，正方形边长的$\sqrt{2}$倍为对角线长度，所以半径为：<br>$$<br>r= \frac{3\sigma(d+1)\sqrt{2}}{2} \tag{20}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hist_width = SIFT_DESCR_SCL_FCTR * scl  <span class="comment">#3σ</span></span><br><span class="line">radius= int（np.round（hist_width * <span class="number">1.4142135623730951</span> *（d +<span class="number">1</span>）* <span class="number">0.5</span>））</span><br></pre></td></tr></table></figure>
+
+<p>为了便于大家的直观理解，下图就是产生公式（20）的过程：</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.03-旋转效果.png" style="zoom:60%;" />
+
+<p>​        所以上述的特征点邻域区域实际应该有(2r+1)X(2r+1)个像素点。由于进行了旋转，则采样点的坐标也需要进行相应的变化，我们先来看一下是怎样变化的，旋转角度已经在上边说过，然后再来讲一下变换后的公式。</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.03-坐标旋转.png" style="zoom:60%;" />
+
+<p>因此经过上边的变化，我们得到新坐标：<br>$$<br>\left[\matrix {x^{‘}\y ^ {‘}}\right]=\left [\matrix {\cos\theta &amp;-\sin\theta\ \sin\theta &amp;\cos\theta }\right]\left [\matrix {x  \ y } \right]<br>$$<br>其中$[x^{‘},y^{‘}]^T$为旋转后的像素新坐标。至于怎么得到的，这其中涉及到坐标旋转变换公式，下面我简单给大家推导一下：</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.03-坐标变换公式1.png" style="zoom:50%;" />
+
+<p>旋转过程我已经在图中标识完成，因为旋转过程r是不变的，所以我们的推导就是基于r：<br>$$<br>s = r\cos(a+b) = r\cos(a) \cos(b)-r\sin(a)\sin(b)\<br>t = r\sin(a+b) = r \sin(a)\cos(b)+r\cos(a)\sin(b)\<br>x = r\cos(a)\<br>y = r\sin(a)<br>$$<br>因此得到：<br>$$<br>s = x\cos(b)-y\sin(b)\<br>t = x\sin(b)+ y\cos(b)\<br>$$<br>也就是我们上面使用的矩阵形式：<br>$$<br>\left[\matrix {s\t}\right]=\left [\matrix {\cos\theta &amp;-\sin\theta\ \sin\theta &amp;\cos\theta }\right]\left [\matrix {x  \ y } \right]<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cos_t = np.cos(ori * (np.pi / <span class="number">180</span>)) <span class="comment"># 余弦值</span></span><br><span class="line">sin_t = np.sin(ori * (np.pi / <span class="number">180</span>)) <span class="comment"># 正弦值</span></span><br><span class="line">c_rot = j * cos_t - i * sin_t </span><br><span class="line">r_rot = j * sin_t + i * cos_t</span><br></pre></td></tr></table></figure>
+
+<p>​        至此为止，坐标旋转变换也介绍完成了，然后，我们需要计算旋转以后特征点邻域范围内像素的梯度幅值和梯度幅角。这里的梯度幅值还需要根据其对中心点贡献的大小进行加权处理，加权函数仍然采用高斯函数，它的方差的平方为$d^2/2$。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exp_scale = <span class="number">-1.0</span> / (d * d * <span class="number">0.5</span>)</span><br><span class="line">W.append((c_rot * c_rot + r_rot * r_rot) * exp_scale)</span><br></pre></td></tr></table></figure>
+
+<p>这里的操作其实我们在前面已经见过了，只是加权的值不一样而已。        </p>
+<p>​        在实际应用中，我们是先以特征点为圆心，以r为半径，计算该圆内所有像素的梯度幅角和高斯加权后的梯度幅值，然后根据坐标变换公式得到这些幅值和幅角所对应的像素在旋转以后新的坐标位置。</p>
+<p>​        在计算特征点描述符的时候，我们不需要精确知道邻域内所有像素的梯度幅值和幅角，我们只需要根据直方图知道其统计值即可。这里的直方图是三维直方图，下面我们会详细介绍一下：</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.09-描述符直方图.png" style="zoom:60%;" />
+
+<p>​        立方体的底就是特征点邻域区域。前边我们已经说过，该区域分为4x4的子区域，不是论文中展示2x2的子区域，是带有描述符的那个张图，因此有16个子区域，也就是我们立方体底部所对应的范围，邻域内的像素根据其坐标位置，把他们归属于这16个子区域中的一个。所以对于上图中x方向，y方向的意义我们已经知道了，然后再说一下高度。</p>
+<p>​        立方体的三维直方图的高为邻域像素梯度幅角的大小，我们把360°的幅角范围进行8等分，每一个等份为45°，我们上边也说过，所以这一就是为什么沿θ方向个立方体为8个，根据邻域像素梯度幅角的大小，把他们归属于这8等分中的一份，这样三维直方图就建立起来，即以特征点为中心的邻域像素根据其坐标位置，以及它的幅角的大小被划归为某个小正方体内，该直方图一共有4x4x8=128个这样的小正方体。而这个三维直方图则是正方体内所有邻域像素的==高斯加权==后的梯度幅值之和，所以一共有128个值，我们把这128个数写成一个128维的矢量，该矢量就是该特征点的特征矢量，所以特征点的矢量构成了最终的输入图像的SIFT描述符。</p>
+<p>​        刚才是在宏观的基础上介绍的，下面我们来看一下小正方体内部需要我们进行怎样的处理？</p>
+<img src="D:\指静脉识别—笔记\SIFT——Scale-invariant feature transform（尺度不变特征转换）.assets\2020.10.03-三维立方体.png" style="zoom:60%;" />
+
+<p>​        正方体的中心代表着该正方体，但是落入正方体内的邻域像素不可能都在中心，因此我们需要对上面的梯度幅值做进一步的处理，根据它对中心点位置的贡献大小进行加权处理，即在正方体内，根据像素点相对于正方体中心的距离，对梯度幅值做加权处理。所以，三维直方图的值，也就是正方体的值需要下面四个步骤完成：</p>
+<p>​        1）计算落入该正方体内的邻域像素的梯度幅值A</p>
+<p>​        2）根据该像素相对于特征点的距离，对A进行高斯加权处理，得到B</p>
+<p>​        3）根据该像素相对于它所在的正方体的中心的贡献大小，再对B进行加权处理，得到C</p>
+<p>​        由于计算相对于正方体中心点的贡献大小略显繁琐，因此在实际应用中，我们需要经过坐标平移，把中心点平移到正方体的顶点上，这样只要计算正方体内的点对正方体的8个顶点的贡献即可。<br>$$<br>\left ( \matrix{x^{‘’}\y{‘’}}\right)=\frac{1}{3\sigma}\left(\matrix{x^{‘}\y^{‘}}\right)+\frac{d}{2}-0.5<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rbin = r_rot + d // <span class="number">2</span> - <span class="number">0.5</span></span><br><span class="line">cbin = c_rot + d // <span class="number">2</span> - <span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dx = (img[r, c+<span class="number">1</span>] - img[r, c<span class="number">-1</span>])</span><br><span class="line">dy = (img[r<span class="number">-1</span>, c] - img[r+<span class="number">1</span>, c])</span><br><span class="line">X.append(dx)</span><br><span class="line">Y.append(dy)</span><br><span class="line">RBin.append(rbin)</span><br><span class="line">CBin.append(cbin)</span><br><span class="line">W.append((c_rot * c_rot + r_rot * r_rot) * exp_scale)</span><br></pre></td></tr></table></figure>
+
+<p>​        </p>
+<p>根据三线性插值法，对某个顶点的贡献值是以该顶点和正方体内的点为对角线的两个顶点，所构成的立方体的体积。也就是对8个顶点的贡献分别为：<br>$$<br>\begin {alignat}{}<br>C_{000}: r\times c\times\theta \<br>C_{100}:(1-r)\times c\times\theta\<br>C_{010}:r\times(1-c) \times\theta\<br>C_{001}:r\times c\times(1-\theta)\<br>C_{110}:(1-r)\times(1-c)\times\theta\<br>C_{101}:(1-r)\times c\times(1-\theta)\<br>C_{011}:r\times(1-c)\times(1-\theta) \<br>C_{111}:(1-r)\times (1-c)\times(1-\theta)<br>\end{alignat}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(length):</span><br><span class="line">    <span class="comment">#得到dxd邻域区域的坐标，即三维直方图的底内的位置</span></span><br><span class="line">    rbin = RBin[k]</span><br><span class="line">    cbin = CBin[k]</span><br><span class="line">    <span class="comment">#得到幅角的所属的8个等分中的一个，即直方图的高度</span></span><br><span class="line">    obin = (Ori[k] - ori) * bins_per_rad  <span class="comment">#bins_per_rad =n/360</span></span><br><span class="line">    <span class="comment">#得到高斯加权以后的梯度幅值</span></span><br><span class="line">    mag = Mag[k] * W[k]</span><br><span class="line">    <span class="comment">#r0 c0 o0 为三维坐标的整数部分，表示属于那个正方体，因为正方体个数是固定的，且为整数</span></span><br><span class="line">    r0 = int(rbin)</span><br><span class="line">    c0 = int(cbin)</span><br><span class="line">    o0 = int(obin)</span><br><span class="line">    <span class="comment">#rbin cbin obin 为三维坐标的小数部分，也就是上图中小正方体c的坐标</span></span><br><span class="line">    rbin -= r0</span><br><span class="line">    cbin -= c0</span><br><span class="line">    obin -= o0</span><br><span class="line">	<span class="comment">#如果角度o0小于0°或者大于360°，则根据圆周循环，把该角度调整到0~360°之间	</span></span><br><span class="line">    <span class="keyword">if</span> o0 &lt; <span class="number">0</span>:</span><br><span class="line">       o0 += n</span><br><span class="line">    <span class="keyword">if</span> o0 &gt;= n:</span><br><span class="line">       o0 -= n</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#三线性插值</span></span><br><span class="line">v_r1 = mag * rbin </span><br><span class="line">v_r0 = mag - v_r1</span><br><span class="line"></span><br><span class="line">v_rc11 = v_r1 * cbin</span><br><span class="line">v_rc10 = v_r1 - v_rc11</span><br><span class="line"></span><br><span class="line">v_rc01 = v_r0 * cbin</span><br><span class="line">v_rc00 = v_r0 - v_rc01</span><br><span class="line"></span><br><span class="line">v_rco111 = v_rc11 * obin</span><br><span class="line">v_rco110 = v_rc11 - v_rco111</span><br><span class="line"></span><br><span class="line">v_rco101 = v_rc10 * obin</span><br><span class="line">v_rco100 = v_rc10 - v_rco101</span><br><span class="line"></span><br><span class="line">v_rco011 = v_rc01 * obin</span><br><span class="line">v_rco010 = v_rc01 - v_rco011</span><br><span class="line"></span><br><span class="line">v_rco001 = v_rc00 * obin</span><br><span class="line">v_rco000 = v_rc00 - v_rco001</span><br><span class="line"><span class="comment">#得到该像素点在三维直方图中的索引</span></span><br><span class="line">idx = ((r0 + <span class="number">1</span>) * (d + <span class="number">2</span>) + c0 + <span class="number">1</span>) * (n + <span class="number">2</span>) + o0</span><br><span class="line"><span class="comment">#8个顶点对应于坐标平移前的8个直方图正方体，对其进行累加求和</span></span><br><span class="line">hist[idx] += v_rco000</span><br><span class="line">hist[idx+<span class="number">1</span>] += v_rco001</span><br><span class="line">hist[idx + (n+<span class="number">2</span>)] += v_rco010</span><br><span class="line">hist[idx + (n+<span class="number">3</span>)] += v_rco011</span><br><span class="line">hist[idx+(d+<span class="number">2</span>) * (n+<span class="number">2</span>)] += v_rco100</span><br><span class="line">hist[idx+(d+<span class="number">2</span>) * (n+<span class="number">2</span>)+<span class="number">1</span>] += v_rco101</span><br><span class="line">hist[idx+(d+<span class="number">3</span>) * (n+<span class="number">2</span>)] += v_rco110</span><br><span class="line">hist[idx+(d+<span class="number">3</span>) * (n+<span class="number">2</span>)+<span class="number">1</span>] += v_rco111</span><br></pre></td></tr></table></figure>
+
+<p>4）对所有落入该正方体内部的像素做上述处理，再进行求和运算ΣC，得到D</p>
+<p>经过上边的三维直方图的计算，最终我们得到了该特征点的特征矢量$P={p_1,p_2,…,p_{128}}$。为了去除光照变化的影响，需要对特征矢量进行归一化处理：<br>$$<br>q_i=\frac{p_i}{\sqrt{\sum_{j=1}^{128}p_j}}, i= 1,2,…128<br>$$<br>则$Q= q_1,q_2,…,q_{128}$为归一化后的特征矢量，尽管通过归一化处理可以消除对光照变化的影响，但是由于照相机饱和以及三维物体表面的不同数量不同角度的光照变化所引起的非线性光照变化仍然存在，它能够影响到一些梯度的相对幅值，但不太会影响梯度幅角。为了消除这部分影响，我们需要设定一个阈值t=0.2，保留Q中小于0.2的元素，而把Q中大于0.2的元素用0.2替代。最后再对Q进行一次归一化处理，以提高特征点的可区分性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">we reduce the influence of large gradient magnitudes by thresholding the values in thr unit feature vector to each be no larger than 0.2,and then renormalizing to unit length</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This means that matching the magnitudes for large gradients is no longer as important, and that the distribution of orientations has greater emphasis.</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，Lowe 老兄在论文中只告诉我们要这么做，但是具体怎么做老兄不说，所以读他的这篇论文真的是有点难度，很多东西都需要我们去了解过程。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nrm2 = <span class="number">0</span></span><br><span class="line">length = d * d * n</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(length):</span><br><span class="line">    nrm2 += dst[k] * dst[k]</span><br><span class="line">thr = np.sqrt(nrm2) * SIFT_DESCR_MAG_THR  <span class="comment">#对光照阈值进行反归一化处理，SIFT_DESCR_MAG_THR=0.2</span></span><br><span class="line">nrm2 = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">    <span class="comment">#把特征矢量中大于反归一化阈值的元素用thr 替代</span></span><br><span class="line">    val = min(dst[i], thr)</span><br><span class="line">    dst[i] = val</span><br><span class="line">    nrm2 += val * val</span><br><span class="line">nrm2 = SIFT_INT_DESCR_FCTR / max(np.sqrt(nrm2), FLT_EPSILON)</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(length):</span><br><span class="line">    dst[k] = min(max(dst[k] * nrm2,<span class="number">0</span>),<span class="number">255</span>)</span><br></pre></td></tr></table></figure>
+
+<p>至此为止，SIFT算法的全部过程讲解完成。论文最后一部分</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>​        SIFT算法是我研究时间最长的一个算法，可以看出来这个算法很经典，但是，整个研究过程真的挺难的，很多知识点论文中没有提到，论文本身又是英文写，读起来难免有些困难，至此为止，SIFT算法我也不能说完全弄懂了，限于自己目前的知识以及编程能力，仍有一些问题还没有想通，可能随着时间的推移，会有另一种层面的理解。之所以写成此文章，因为在研究过程遇到很多问题，但是没有讲的特别细致的文章，所以把自己的一些理解写下来供大家理解，整篇文章内容较长，是我自己参考很多文章后，加上自己的理解写的，难免出现错误，还请指正。</p>
+<p>​        Lowe 老兄论文最后的特征匹配部分我没有写，因为研究此算法时间有点长了，有点疲惫了，还有其他的事情需要处理，目前我的整个研究范围主要集中在图像处理，计算机视觉方面，大家可以多多交流，我的邮箱是<a href="mailto:digitalminst@163.com">digitalminst@163.com</a>.</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>1、<a href="https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf" target="_blank" rel="noopener">https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf</a></p>
+<p>2、<a href="https://cloud.tencent.com/developer/article/1343067" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1343067</a></p>
+<p>3、<a href="https://www.cnblogs.com/JiePro/p/sift_3.html" target="_blank" rel="noopener">https://www.cnblogs.com/JiePro/p/sift_3.html</a></p>
+<p>4、<a href="https://www.pythonf.cn/read/86508" target="_blank" rel="noopener">https://www.pythonf.cn/read/86508</a></p>
+<p>5、<a href="http://www.360doc.com/content/19/0709/12/32196507_847629007.shtml" target="_blank" rel="noopener">http://www.360doc.com/content/19/0709/12/32196507_847629007.shtml</a></p>
+<p>6、<a href="https://www.bilibili.com/video/BV1Qb411W7cK?from=search&amp;seid=12214547757792115268" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1Qb411W7cK?from=search&amp;seid=12214547757792115268</a></p>
+<p>7、<a href="https://wenku.baidu.com/view/d7edd2464b73f242336c5ffa.html#" target="_blank" rel="noopener">https://wenku.baidu.com/view/d7edd2464b73f242336c5ffa.html#</a></p>
+<p>8、<a href="https://zh.wikipedia.org/wiki/Nabla%E7%AE%97%E5%AD%90" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Nabla%E7%AE%97%E5%AD%90</a></p>
+<p>9、<a href="https://cloud.tencent.com/developer/article/1343067" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1343067</a></p>
+<p>10、<a href="https://www.cnblogs.com/yyfighting/p/12500627.html" target="_blank" rel="noopener">https://www.cnblogs.com/yyfighting/p/12500627.html</a></p>
+<p>11、<a href="https://zhuanlan.zhihu.com/p/32815143" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32815143</a></p>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
+
+		<!-- relate post, comment...-->
+		<div class="investment-container">
+			<div class="investment-header">
+				<div class="investment-title-1">
+					<div class="on">Related post</div>
+					<div>Comment</div>
+					<div>Share</div>
+				</div>
+				<div class="investment-title-2">	            
+					
+	<span>
+		<a id="totop-post-page">To Top</a>
+		
+		
+			<a href="/2020/02/20/2020-022/" title="2020.022" rel="next">
+				Next post&raquo;
+			</a>
+			
+	</span>
+
+
+      		
+				</div>	
+			</div>
+			
+			<div class="investment-content">
+				<div class="investment-content-list">
+					
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/20/2020-022/" title="2020.022">
+								2020.022			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 20日, 2020				
+							</p>
+							<p class="relate-post-content">
+								   今天对于很多同学来说都是一个很特别的时刻，
+曾经的我也面临过这样的时刻，
+但深吸一口气，熬过去了，一切都会变好的。
+因为在我看来，你们每一个人都十分优秀而强大。
+而每一个强大的人，都曾咬着牙度过一段没人帮忙，没人支持，没人嘘寒问...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/20/2020-022/" title="2020.022">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="2020.022"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/11/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95/" title="费曼学习法">
+								费曼学习法			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 11日, 2020				
+							</p>
+							<p class="relate-post-content">
+								   费曼学习法       
+       
+
+什么是费曼学习法？在一列开往北京方向的火车上，有一位农民父亲，他的女儿三年前上考上了清华，儿子也在今年上了北大。有人就好奇的问他：“你把两个孩子都拉扯进了象牙塔，是不是有什么绝招啊，说...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/11/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95/" title="费曼学习法">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="费曼学习法"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/11/%E6%B1%9F%E6%B9%96%E4%B8%8D%E5%A4%A7%EF%BC%8C%E6%88%91%E4%BB%AC%E6%8D%A2%E7%A7%8D%E8%BA%AB%E4%BB%BD%E5%86%8D%E8%A7%81/" title="江湖不大，我们换种身份再见">
+								江湖不大，我们换种身份再见			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 11日, 2020				
+							</p>
+							<p class="relate-post-content">
+								   ​   江湖不大，我们换种身份再见 
+  腿姐 陆寓丰 
+
+当你看到这封信时，意味着2020年考研初试的基本结束。作为今年你努力的见证者与参与者，我由衷地为你这一年的奋斗与努力而感到自豪、欣慰。你们辛苦了！今晚先好好睡一觉吧！
+...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/11/%E6%B1%9F%E6%B9%96%E4%B8%8D%E5%A4%A7%EF%BC%8C%E6%88%91%E4%BB%AC%E6%8D%A2%E7%A7%8D%E8%BA%AB%E4%BB%BD%E5%86%8D%E8%A7%81/" title="江湖不大，我们换种身份再见">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="江湖不大，我们换种身份再见"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/11/%E9%9A%8F%E7%AC%94%E4%B8%80%E5%8F%A5/" title="随笔一句">
+								随笔一句			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 11日, 2020				
+							</p>
+							<p class="relate-post-content">
+								通过过去的经验认知去定义自己，你就会呈现你以为的这个样子。
+通过当下的创造认知去定义自己，你才会展现出你新的样子。
+
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/11/%E9%9A%8F%E7%AC%94%E4%B8%80%E5%8F%A5/" title="随笔一句">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="随笔一句"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/01/31/you%20are%20not%20late/" title="You are not late">
+								You are not late			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								一月 31日, 2020				
+							</p>
+							<p class="relate-post-content">
+								You are not lateNew York is three hours ahead of California, but that does not make California slow
+Cameroon is six h...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/01/31/you%20are%20not%20late/" title="You are not late">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="You are not late"/>
+							</a>
+						</div>
+					</li>												
+			
+		</ul>
+	
+</div>	
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-comment">
+
+	
+		<div class="config-info">
+			Please check the parameter of <b>comment</b> in config.yml of hexo-theme-Annie!
+		</div>	
+	
+
+</div>
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-share">
+	
+	
+
+		
+			
+			<!-- socialShare share -->
+			<div class="social-share"></div>
+
+<!--  css & js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+			
+		
+		
+	
+</div>
+
+
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">Home</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">Archive</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">Category</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">Tag</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">About</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">Gallery</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2020, content by Sariay. All Rights Reserved.
+			
+			
+				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+
+
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>
